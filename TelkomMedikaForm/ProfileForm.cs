@@ -29,7 +29,7 @@ namespace TelkomMedikaForm
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            var authService = new AuthService();
+            var authService = TelkomMedika.Services.AuthService.Instance;
             authService.Logout();
 
             this.Close();

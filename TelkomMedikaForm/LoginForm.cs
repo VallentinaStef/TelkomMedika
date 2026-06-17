@@ -9,7 +9,7 @@ namespace TelkomMedikaForm
         public LoginForm()
         {
             InitializeComponent();
-            authService = new AuthService();
+            authService = TelkomMedika.Services.AuthService.Instance;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

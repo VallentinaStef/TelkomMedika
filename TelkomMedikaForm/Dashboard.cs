@@ -58,6 +58,7 @@ namespace TelkomMedikaForm
                     ("Reservasi", "reservasi"),
                     ("Jadwal Dokter", "jadwaldokter"),
                     ("Notifikasi & Konsultasi", "notifikasi"),
+                    ("Unlock User", "unlock"),
                     ("Logout", "logout")
                 },
                 ["Dokter"] = new()
@@ -102,6 +103,11 @@ namespace TelkomMedikaForm
                     DoLogout();
                     break;
 
+                case "unlock":
+                    var unlockForm = new UnlockUserForm();
+                    unlockForm.ShowDialog();
+                    break;
+
                 default:
                     string featureName = btn.Text;
                     MessageBox.Show(
@@ -116,7 +122,7 @@ namespace TelkomMedikaForm
 
         private void DoLogout()
         {
-            var authService = new AuthService();
+            var authService = TelkomMedika.Services.AuthService.Instance;
             authService.Logout();
 
             this.Close();
