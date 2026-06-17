@@ -38,6 +38,11 @@ namespace TelkomMedika.Services
                 return new Response<User> { Status = false, Message = "Password wajib diisi!" };
             }
 
+            if (username != "admin" && username != "dokter" && username != "pasien")
+            {
+                return new Response<User> { Status = false, Message = "Username tidak terdaftar!" };
+            }
+
             var info = _loginMap.GetOrAdd(username, _ => new LoginInfo { Attempts = 0, LockUntil = null });
 
             if (info.LockUntil.HasValue && info.LockUntil.Value > DateTime.UtcNow)

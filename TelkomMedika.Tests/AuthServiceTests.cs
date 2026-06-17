@@ -29,11 +29,11 @@ namespace TelkomMedika.Tests
             var svc = AuthService.Instance;
             svc.ClearAllAttempts();
 
-            svc.Login("tester", "bad");
-            svc.Login("tester", "bad");
-            var r3 = svc.Login("tester", "bad");
+            svc.Login("dokter", "bad");
+            svc.Login("dokter", "bad");
+            var r3 = svc.Login("dokter", "bad");
             Assert.False(r3.Status);
-            var rem = svc.GetRemainingLockTime("tester");
+            var rem = svc.GetRemainingLockTime("dokter");
             Assert.NotNull(rem);
         }
 
@@ -43,14 +43,27 @@ namespace TelkomMedika.Tests
             var svc = AuthService.Instance;
             svc.ClearAllAttempts();
 
-            svc.Login("temp", "bad");
-            svc.Login("temp", "bad");
-            svc.Login("temp", "bad");
-            Assert.NotNull(svc.GetRemainingLockTime("temp"));
+            svc.Login("admin", "bad");
+            svc.Login("admin", "bad");
+            svc.Login("admin", "bad");
+            Assert.NotNull(svc.GetRemainingLockTime("admin"));
 
-            svc.UnlockUser("temp");
-            Assert.Null(svc.GetRemainingLockTime("temp"));
-            Assert.Equal(0, svc.GetAttempts("temp"));
+            svc.UnlockUser("admin");
+            Assert.Null(svc.GetRemainingLockTime("admin"));
+            Assert.Equal(0, svc.GetAttempts("admin"));
+        }
+
+        [Fact]
+        public void UnknownUsernameReturnsNotRegistered()
+        {
+            var svc = AuthService.Instance;
+            svc.ClearAllAttempts();
+
+            var r = svc.Login("unknown", "anypassword");
+            Assert.False(r.Status);
+            Assert.Equal("Username tidak terdaftar!", r.Message);
+            Assert.Equal(0, svc.GetAttempts("unknown"));
+            Assert.Null(svc.GetRemainingLockTime("unknown"));
         }
     }
 }
