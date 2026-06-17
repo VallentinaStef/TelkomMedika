@@ -24,10 +24,16 @@ namespace TelkomMedikaForm
         {
             authService.Logout();
 
-            this.Hide(); // sembunyikan dashboard
+            this.Hide();
 
             LoginForm login = new LoginForm();
             login.Show();
+        }
+
+        private void btnObat_Click(object? sender, EventArgs e)
+        {
+            ObatForm obatForm = new ObatForm();
+            obatForm.ShowDialog();
         }
     }
 }

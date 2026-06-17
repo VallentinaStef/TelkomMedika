@@ -31,6 +31,7 @@
             label1 = new Label();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             btnLogout = new Button();
+            btnObat = new Button();
             SuspendLayout();
             // 
             // label1
@@ -40,25 +41,36 @@
             label1.Name = "label1";
             label1.Size = new Size(54, 25);
             label1.TabIndex = 0;
-            label1.Text = "IniDB";
+            label1.Text = "Dashboard";
             // 
             // btnLogout
             // 
             btnLogout.AllowDrop = true;
             btnLogout.AutoEllipsis = true;
-            btnLogout.Location = new Point(482, 154);
+            btnLogout.Location = new Point(640, 370);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(112, 34);
+            btnLogout.Size = new Size(130, 40);
             btnLogout.TabIndex = 1;
             btnLogout.Text = "Logout";
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
+            // 
+            // btnObat
+            // 
+            btnObat.Location = new Point(320, 200);
+            btnObat.Name = "btnObat";
+            btnObat.Size = new Size(160, 50);
+            btnObat.TabIndex = 2;
+            btnObat.Text = "Obat & Pengingat";
+            btnObat.UseVisualStyleBackColor = true;
+            btnObat.Click += btnObat_Click;
             // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnObat);
             Controls.Add(btnLogout);
             Controls.Add(label1);
             Name = "Dashboard";
@@ -72,5 +84,6 @@
         private Label label1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Button btnLogout;
+        private Button btnObat;
     }
 }
