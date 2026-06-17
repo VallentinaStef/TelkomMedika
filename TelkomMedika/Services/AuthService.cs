@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tubes_KPL_Kelompok_1.src.Models;
+﻿using Tubes_KPL_Kelompok_1.src.Models;
 using Tubes_KPL_Kelompok_1.src.States;
 using Tubes_KPL_Kelompok_1.src.Utils;
 
@@ -14,12 +9,35 @@ namespace TelkomMedika.Services
         public AuthState State { get; private set; } = AuthState.LoggedOut;
         public User CurrentUser;
 
-        private int loginAttempts = 0;
+        private readonly Dictionary<string, int> _loginAttempts = new();
         private const int MAX_ATTEMPTS = 3;
 
         public Response<User> Login(string username, string password)
         {
-            if (loginAttempts >= MAX_ATTEMPTS)
+            if (string.IsNullOrWhiteSpace(username))
+            {
+                return new Response<User>
+                {
+                    Status = false,
+                    Message = "Username wajib diisi!"
+                };
+            }
+
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                return new Response<User>
+                {
+                    Status = false,
+                    Message = "Password wajib diisi!"
+                };
+            }
+
+            if (!_loginAttempts.ContainsKey(username))
+            {
+                _loginAttempts[username] = 0;
+            }
+
+            if (_loginAttempts[username] >= MAX_ATTEMPTS)
             {
                 return new Response<User>
                 {
@@ -28,11 +46,10 @@ namespace TelkomMedika.Services
                 };
             }
 
-            // Admin
             if (username == "admin" && password == "123")
             {
                 State = AuthState.LoggedIn;
-                loginAttempts = 0;
+                _loginAttempts[username] = 0;
 
                 CurrentUser = new User
                 {
@@ -40,6 +57,10 @@ namespace TelkomMedika.Services
                     Name = "Admin",
                     Role = "Admin"
                 };
+
+                UserSession.Username = username;
+                UserSession.Name = "Admin";
+                UserSession.Role = "Admin";
 
                 return new Response<User>
                 {
@@ -49,11 +70,10 @@ namespace TelkomMedika.Services
                 };
             }
 
-            // Dokter
             if (username == "dokter" && password == "123")
             {
                 State = AuthState.LoggedIn;
-                loginAttempts = 0;
+                _loginAttempts[username] = 0;
 
                 CurrentUser = new User
                 {
@@ -61,6 +81,10 @@ namespace TelkomMedika.Services
                     Name = "Dr. Budi",
                     Role = "Dokter"
                 };
+
+                UserSession.Username = username;
+                UserSession.Name = "Dr. Budi";
+                UserSession.Role = "Dokter";
 
                 return new Response<User>
                 {
@@ -70,11 +94,10 @@ namespace TelkomMedika.Services
                 };
             }
 
-            // Pasien
             if (username == "pasien" && password == "123")
             {
                 State = AuthState.LoggedIn;
-                loginAttempts = 0;
+                _loginAttempts[username] = 0;
 
                 CurrentUser = new User
                 {
@@ -82,6 +105,10 @@ namespace TelkomMedika.Services
                     Name = "Andi",
                     Role = "Pasien"
                 };
+
+                UserSession.Username = username;
+                UserSession.Name = "Andi";
+                UserSession.Role = "Pasien";
 
                 return new Response<User>
                 {
@@ -91,12 +118,12 @@ namespace TelkomMedika.Services
                 };
             }
 
-            loginAttempts++;
+            _loginAttempts[username]++;
 
             return new Response<User>
             {
                 Status = false,
-                Message = $"Login gagal! Percobaan ke-{loginAttempts}"
+                Message = $"Login gagal! Percobaan ke-{_loginAttempts[username]}"
             };
         }
 
@@ -104,12 +131,18 @@ namespace TelkomMedika.Services
         {
             State = AuthState.LoggedOut;
             CurrentUser = null;
+            UserSession.Clear();
 
             return new Response<string>
             {
                 Status = true,
                 Message = "Logout berhasil!"
             };
+        }
+
+        public int GetAttempts(string username)
+        {
+            return _loginAttempts.ContainsKey(username) ? _loginAttempts[username] : 0;
         }
     }
 }
