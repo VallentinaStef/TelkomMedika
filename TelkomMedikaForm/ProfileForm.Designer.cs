@@ -16,6 +16,7 @@ namespace TelkomMedikaForm
         private void InitializeComponent()
         {
             panelCard = new Panel();
+            btnBack = new Button();
             lblProfileTitle = new Label();
             lblUsernameLabel = new Label();
             lblUsernameValue = new Label();
@@ -23,7 +24,7 @@ namespace TelkomMedikaForm
             lblRoleValue = new Label();
             lblNameLabel = new Label();
             lblNameValue = new Label();
-            btnBack = new Button();
+            btnEdit = new Button();
             panelCard.SuspendLayout();
             SuspendLayout();
             // 
@@ -39,19 +40,36 @@ namespace TelkomMedikaForm
             panelCard.Controls.Add(lblRoleValue);
             panelCard.Controls.Add(lblNameLabel);
             panelCard.Controls.Add(lblNameValue);
-            panelCard.Location = new Point(200, 80);
+            panelCard.Controls.Add(btnEdit);
+            panelCard.Location = new Point(250, 100);
+            panelCard.Margin = new Padding(4);
             panelCard.Name = "panelCard";
-            panelCard.Size = new Size(400, 320);
+            panelCard.Size = new Size(500, 400);
             panelCard.TabIndex = 0;
+            // 
+            // btnBack
+            // 
+            btnBack.BackColor = Color.Transparent;
+            btnBack.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnBack.ForeColor = Color.Black;
+            btnBack.Location = new Point(20, 15);
+            btnBack.Margin = new Padding(4);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(55, 40);
+            btnBack.TabIndex = 7;
+            btnBack.Text = "<-- Kembali";
+            btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
             // 
             // lblProfileTitle
             // 
             lblProfileTitle.AutoSize = true;
             lblProfileTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             lblProfileTitle.ForeColor = Color.Teal;
-            lblProfileTitle.Location = new Point(155, 20);
+            lblProfileTitle.Location = new Point(194, 25);
+            lblProfileTitle.Margin = new Padding(4, 0, 4, 0);
             lblProfileTitle.Name = "lblProfileTitle";
-            lblProfileTitle.Size = new Size(82, 37);
+            lblProfileTitle.Size = new Size(103, 45);
             lblProfileTitle.TabIndex = 0;
             lblProfileTitle.Text = "Profil";
             // 
@@ -59,9 +77,10 @@ namespace TelkomMedikaForm
             // 
             lblUsernameLabel.AutoSize = true;
             lblUsernameLabel.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            lblUsernameLabel.Location = new Point(60, 90);
+            lblUsernameLabel.Location = new Point(75, 112);
+            lblUsernameLabel.Margin = new Padding(4, 0, 4, 0);
             lblUsernameLabel.Name = "lblUsernameLabel";
-            lblUsernameLabel.Size = new Size(102, 25);
+            lblUsernameLabel.Size = new Size(123, 30);
             lblUsernameLabel.TabIndex = 1;
             lblUsernameLabel.Text = "Username:";
             // 
@@ -69,18 +88,20 @@ namespace TelkomMedikaForm
             // 
             lblUsernameValue.AutoSize = true;
             lblUsernameValue.Font = new Font("Segoe UI", 11F);
-            lblUsernameValue.Location = new Point(60, 120);
+            lblUsernameValue.Location = new Point(75, 150);
+            lblUsernameValue.Margin = new Padding(4, 0, 4, 0);
             lblUsernameValue.Name = "lblUsernameValue";
-            lblUsernameValue.Size = new Size(0, 25);
+            lblUsernameValue.Size = new Size(0, 30);
             lblUsernameValue.TabIndex = 2;
             // 
             // lblRoleLabel
             // 
             lblRoleLabel.AutoSize = true;
             lblRoleLabel.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            lblRoleLabel.Location = new Point(60, 160);
+            lblRoleLabel.Location = new Point(75, 200);
+            lblRoleLabel.Margin = new Padding(4, 0, 4, 0);
             lblRoleLabel.Name = "lblRoleLabel";
-            lblRoleLabel.Size = new Size(58, 25);
+            lblRoleLabel.Size = new Size(63, 30);
             lblRoleLabel.TabIndex = 3;
             lblRoleLabel.Text = "Role:";
             // 
@@ -88,18 +109,20 @@ namespace TelkomMedikaForm
             // 
             lblRoleValue.AutoSize = true;
             lblRoleValue.Font = new Font("Segoe UI", 11F);
-            lblRoleValue.Location = new Point(60, 190);
+            lblRoleValue.Location = new Point(75, 238);
+            lblRoleValue.Margin = new Padding(4, 0, 4, 0);
             lblRoleValue.Name = "lblRoleValue";
-            lblRoleValue.Size = new Size(0, 25);
+            lblRoleValue.Size = new Size(0, 30);
             lblRoleValue.TabIndex = 4;
             // 
             // lblNameLabel
             // 
             lblNameLabel.AutoSize = true;
             lblNameLabel.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            lblNameLabel.Location = new Point(60, 230);
+            lblNameLabel.Location = new Point(75, 288);
+            lblNameLabel.Margin = new Padding(4, 0, 4, 0);
             lblNameLabel.Name = "lblNameLabel";
-            lblNameLabel.Size = new Size(65, 25);
+            lblNameLabel.Size = new Size(80, 30);
             lblNameLabel.TabIndex = 5;
             lblNameLabel.Text = "Nama:";
             // 
@@ -107,31 +130,34 @@ namespace TelkomMedikaForm
             // 
             lblNameValue.AutoSize = true;
             lblNameValue.Font = new Font("Segoe UI", 11F);
-            lblNameValue.Location = new Point(60, 260);
+            lblNameValue.Location = new Point(75, 325);
+            lblNameValue.Margin = new Padding(4, 0, 4, 0);
             lblNameValue.Name = "lblNameValue";
-            lblNameValue.Size = new Size(0, 25);
+            lblNameValue.Size = new Size(0, 30);
             lblNameValue.TabIndex = 6;
             // 
-            // btnBack
+            // btnEdit
             // 
-            btnBack.BackColor = Color.DimGray;
-            btnBack.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnBack.ForeColor = Color.White;
-            btnBack.Location = new Point(12, 12);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(130, 35);
-            btnBack.TabIndex = 7;
-            btnBack.Text = "<-- Kembali";
-            btnBack.UseVisualStyleBackColor = false;
-            btnBack.Click += btnBack_Click;
+            btnEdit.BackColor = Color.DodgerBlue;
+            btnEdit.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnEdit.ForeColor = Color.White;
+            btnEdit.Location = new Point(220, 321);
+            btnEdit.Margin = new Padding(4);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(80, 35);
+            btnEdit.TabIndex = 8;
+            btnEdit.Text = "Edit";
+            btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += btnEdit_Click;
             // 
             // ProfileForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightGray;
-            ClientSize = new Size(800, 480);
+            ClientSize = new Size(1000, 600);
             Controls.Add(panelCard);
+            Margin = new Padding(4);
             Name = "ProfileForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TelkomMedika - Profil";
@@ -150,5 +176,6 @@ namespace TelkomMedikaForm
         private Label lblNameLabel;
         private Label lblNameValue;
         private Button btnBack;
+        private Button btnEdit;
     }
 }

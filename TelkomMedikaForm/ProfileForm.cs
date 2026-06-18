@@ -25,5 +25,14 @@ namespace TelkomMedikaForm
         {
             this.Close();
         }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            using var editForm = new EditProfileForm();
+            if (editForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadUserProfile();
+            }
+        }
     }
 }
