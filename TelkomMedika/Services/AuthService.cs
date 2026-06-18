@@ -118,9 +118,9 @@ namespace TelkomMedika.Services
         }
 
         // admin / helper APIs
-        public void UnlockUser(string username)
+        public bool UnlockUser(string username)
         {
-            _loginMap.TryRemove(username, out _);
+            return _loginMap.TryRemove(username, out _);
         }
 
         public void ClearAllAttempts()

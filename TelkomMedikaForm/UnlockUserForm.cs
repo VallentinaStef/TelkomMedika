@@ -55,15 +55,23 @@ namespace TelkomMedikaForm
                 return;
             }
 
-            AuthService.Instance.UnlockUser(username);
-            MessageBox.Show($"User '{username}' telah di-unlock.", "Sukses",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+            bool removed = AuthService.Instance.UnlockUser(username);
+            if (removed)
+            {
+                MessageBox.Show($"User '{username}' telah di-unlock.", "Sukses",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            var rowsToDelete = _dtLocked.Select($"Username = '{username.Replace("'", "''")}'");
-            foreach (var row in rowsToDelete)
-                _dtLocked.Rows.Remove(row);
+                var rowsToDelete = _dtLocked.Select($"Username = '{username.Replace("'", "''")}'");
+                foreach (var row in rowsToDelete)
+                    _dtLocked.Rows.Remove(row);
 
-            txtUsername.Clear();
+                txtUsername.Clear();
+            }
+            else
+            {
+                MessageBox.Show($"User '{username}' tidak ditemukan atau tidak sedang terkunci.",
+                                "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

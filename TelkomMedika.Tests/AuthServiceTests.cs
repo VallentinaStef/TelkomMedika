@@ -48,7 +48,7 @@ namespace TelkomMedika.Tests
             svc.Login("admin", "bad");
             Assert.NotNull(svc.GetRemainingLockTime("admin"));
 
-            svc.UnlockUser("admin");
+            Assert.True(svc.UnlockUser("admin"));
             Assert.Null(svc.GetRemainingLockTime("admin"));
             Assert.Equal(0, svc.GetAttempts("admin"));
         }
