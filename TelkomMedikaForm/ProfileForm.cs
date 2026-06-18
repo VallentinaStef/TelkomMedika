@@ -1,4 +1,3 @@
-using TelkomMedika.Services;
 using Tubes_KPL_Kelompok_1.src.Models;
 
 namespace TelkomMedikaForm
@@ -22,20 +21,9 @@ namespace TelkomMedikaForm
             lblNameValue.Text = UserSession.Name;
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Fitur edit profil akan segera tersedia.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            var authService = TelkomMedika.Services.AuthService.Instance;
-            authService.Logout();
-
             this.Close();
-
-            LoginForm login = new LoginForm();
-            login.Show();
         }
     }
 }

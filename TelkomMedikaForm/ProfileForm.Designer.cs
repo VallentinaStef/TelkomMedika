@@ -23,8 +23,7 @@ namespace TelkomMedikaForm
             lblRoleValue = new Label();
             lblNameLabel = new Label();
             lblNameValue = new Label();
-            btnEdit = new Button();
-            btnLogout = new Button();
+            btnBack = new Button();
             panelCard.SuspendLayout();
             SuspendLayout();
             // 
@@ -32,6 +31,7 @@ namespace TelkomMedikaForm
             // 
             panelCard.BackColor = Color.White;
             panelCard.BorderStyle = BorderStyle.FixedSingle;
+            panelCard.Controls.Add(btnBack);
             panelCard.Controls.Add(lblProfileTitle);
             panelCard.Controls.Add(lblUsernameLabel);
             panelCard.Controls.Add(lblUsernameValue);
@@ -39,8 +39,6 @@ namespace TelkomMedikaForm
             panelCard.Controls.Add(lblRoleValue);
             panelCard.Controls.Add(lblNameLabel);
             panelCard.Controls.Add(lblNameValue);
-            panelCard.Controls.Add(btnEdit);
-            panelCard.Controls.Add(btnLogout);
             panelCard.Location = new Point(200, 80);
             panelCard.Name = "panelCard";
             panelCard.Size = new Size(400, 320);
@@ -114,31 +112,18 @@ namespace TelkomMedikaForm
             lblNameValue.Size = new Size(0, 25);
             lblNameValue.TabIndex = 6;
             // 
-            // btnEdit
+            // btnBack
             // 
-            btnEdit.BackColor = Color.DodgerBlue;
-            btnEdit.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnEdit.ForeColor = Color.White;
-            btnEdit.Location = new Point(120, 320);
-            btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(100, 35);
-            btnEdit.TabIndex = 7;
-            btnEdit.Text = "Edit";
-            btnEdit.UseVisualStyleBackColor = false;
-            btnEdit.Click += btnEdit_Click;
-            // 
-            // btnLogout
-            // 
-            btnLogout.BackColor = Color.IndianRed;
-            btnLogout.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnLogout.ForeColor = Color.White;
-            btnLogout.Location = new Point(240, 320);
-            btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(100, 35);
-            btnLogout.TabIndex = 8;
-            btnLogout.Text = "Logout";
-            btnLogout.UseVisualStyleBackColor = false;
-            btnLogout.Click += btnLogout_Click;
+            btnBack.BackColor = Color.DimGray;
+            btnBack.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnBack.ForeColor = Color.White;
+            btnBack.Location = new Point(12, 12);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(130, 35);
+            btnBack.TabIndex = 7;
+            btnBack.Text = "<-- Kembali";
+            btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
             // 
             // ProfileForm
             // 
@@ -164,7 +149,6 @@ namespace TelkomMedikaForm
         private Label lblRoleValue;
         private Label lblNameLabel;
         private Label lblNameValue;
-        private Button btnEdit;
-        private Button btnLogout;
+        private Button btnBack;
     }
 }
