@@ -143,6 +143,16 @@ namespace TelkomMedika.Services
             return null;
         }
 
+        public List<string> GetRegisteredUsers()
+        {
+            return new List<string> { "admin", "dokter", "pasien" };
+        }
+
+        public bool IsUserRegistered(string username)
+        {
+            return GetRegisteredUsers().Contains(username, StringComparer.OrdinalIgnoreCase);
+        }
+
         public List<string> GetLockedUsers()
         {
             var now = DateTime.UtcNow;

@@ -12,6 +12,7 @@ namespace TelkomMedikaForm
             InitializeComponent();
             _dtLocked = new DataTable();
             _dtLocked.Columns.Add("Username", typeof(string));
+            _dtLocked.Columns.Add("Status", typeof(string));
             _dtLocked.Columns.Add("Sisa Waktu", typeof(string));
             dgvLockedUsers.DataSource = _dtLocked;
         }
@@ -25,13 +26,15 @@ namespace TelkomMedikaForm
         {
             _dtLocked.Rows.Clear();
             var svc = AuthService.Instance;
-            foreach (var user in svc.GetLockedUsers())
+            foreach (var user in svc.GetRegisteredUsers())
             {
                 var rem = svc.GetRemainingLockTime(user);
-                string sisa = rem.HasValue
+                bool isLocked = rem.HasValue;
+                string status = isLocked ? "Terkunci" : "Normal";
+                string sisa = isLocked
                     ? $"{(int)rem.Value.TotalMinutes} menit {rem.Value.Seconds} detik"
                     : "\u2014";
-                _dtLocked.Rows.Add(user, sisa);
+                _dtLocked.Rows.Add(user, status, sisa);
             }
         }
 
@@ -55,21 +58,32 @@ namespace TelkomMedikaForm
                 return;
             }
 
-            bool removed = AuthService.Instance.UnlockUser(username);
+            var svc = AuthService.Instance;
+            if (!svc.IsUserRegistered(username))
+            {
+                MessageBox.Show($"User '{username}' tidak terdaftar dalam sistem.",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            bool removed = svc.UnlockUser(username);
             if (removed)
             {
                 MessageBox.Show($"User '{username}' telah di-unlock.", "Sukses",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                var rowsToDelete = _dtLocked.Select($"Username = '{username.Replace("'", "''")}'");
-                foreach (var row in rowsToDelete)
-                    _dtLocked.Rows.Remove(row);
+                var rows = _dtLocked.Select($"Username = '{username.Replace("'", "''")}'");
+                foreach (var row in rows)
+                {
+                    row["Status"] = "Normal";
+                    row["Sisa Waktu"] = "\u2014";
+                }
 
                 txtUsername.Clear();
             }
             else
             {
-                MessageBox.Show($"User '{username}' tidak ditemukan atau tidak sedang terkunci.",
+                MessageBox.Show($"User '{username}' tidak sedang terkunci.",
                                 "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
