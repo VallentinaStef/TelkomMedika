@@ -17,9 +17,12 @@ namespace TelkomMedikaForm
             SetupSidebarMenu();
         }
 
+        private Button _activeMenuButton;
+
         private void SetupSidebarMenu()
         {
             panelSidebar.Controls.Clear();
+            _activeMenuButton = null;
 
             var menus = GetMenusByRole();
             int y = 20;
@@ -31,14 +34,14 @@ namespace TelkomMedikaForm
                     Text = menu.Text,
                     Tag = menu.Action,
                     FlatStyle = FlatStyle.Flat,
-                    BackColor = Color.Teal,
+                    BackColor = Color.FromArgb(0xC6, 0x28, 0x28),
                     ForeColor = Color.White,
                     Font = new Font("Segoe UI", 10F, FontStyle.Bold),
                     TextAlign = ContentAlignment.MiddleLeft,
                     Padding = new Padding(10, 0, 0, 0),
                     Size = new Size(200, 45),
                     Location = new Point(10, y),
-                    FlatAppearance = { BorderSize = 0, MouseOverBackColor = Color.DarkSlateGray }
+                    FlatAppearance = { BorderSize = 0, MouseOverBackColor = Color.FromArgb(0x8E, 0x00, 0x00) }
                 };
 
                 btn.Click += MenuButton_Click;
@@ -91,6 +94,12 @@ namespace TelkomMedikaForm
         {
             if (sender is not Button btn || btn.Tag is not string action)
                 return;
+
+            if (_activeMenuButton != null && _activeMenuButton != btn)
+                _activeMenuButton.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
+
+            btn.BackColor = Color.FromArgb(0x8E, 0x00, 0x00);
+            _activeMenuButton = btn;
 
             switch (action)
             {

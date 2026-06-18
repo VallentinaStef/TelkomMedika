@@ -51,7 +51,7 @@ namespace TelkomMedikaForm
             // 
             btnBack.BackColor = Color.Transparent;
             btnBack.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnBack.ForeColor = Color.Black;
+            btnBack.ForeColor = Color.FromArgb(0x33, 0x33, 0x33);
             btnBack.Location = new Point(20, 15);
             btnBack.Margin = new Padding(4);
             btnBack.Name = "btnBack";
@@ -65,7 +65,7 @@ namespace TelkomMedikaForm
             // 
             lblProfileTitle.AutoSize = true;
             lblProfileTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            lblProfileTitle.ForeColor = Color.Teal;
+            lblProfileTitle.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
             lblProfileTitle.Location = new Point(194, 25);
             lblProfileTitle.Margin = new Padding(4, 0, 4, 0);
             lblProfileTitle.Name = "lblProfileTitle";
@@ -138,7 +138,7 @@ namespace TelkomMedikaForm
             // 
             // btnEdit
             // 
-            btnEdit.BackColor = Color.DodgerBlue;
+            btnEdit.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
             btnEdit.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnEdit.ForeColor = Color.White;
             btnEdit.Location = new Point(220, 321);
@@ -154,7 +154,7 @@ namespace TelkomMedikaForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LightGray;
+            BackColor = Color.FromArgb(0xFD, 0xEC, 0xEC);
             ClientSize = new Size(1000, 600);
             Controls.Add(panelCard);
             Margin = new Padding(4);

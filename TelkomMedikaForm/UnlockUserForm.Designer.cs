@@ -68,12 +68,17 @@ namespace TelkomMedikaForm
             //
             // btnUnlock
             //
+            this.btnUnlock.BackColor = System.Drawing.Color.FromArgb(0xC6, 0x28, 0x28);
+            this.btnUnlock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUnlock.FlatAppearance.BorderSize = 0;
+            this.btnUnlock.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnUnlock.ForeColor = System.Drawing.Color.White;
             this.btnUnlock.Location = new System.Drawing.Point(313, 224);
             this.btnUnlock.Name = "btnUnlock";
             this.btnUnlock.Size = new System.Drawing.Size(75, 27);
             this.btnUnlock.TabIndex = 4;
             this.btnUnlock.Text = "Unlock";
-            this.btnUnlock.UseVisualStyleBackColor = true;
+            this.btnUnlock.UseVisualStyleBackColor = false;
             this.btnUnlock.Click += new System.EventHandler(this.btnUnlock_Click);
             //
             // UnlockUserForm

@@ -41,7 +41,7 @@ namespace TelkomMedikaForm
             //
             // btnSave
             //
-            btnSave.BackColor = Color.Teal;
+            btnSave.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
             btnSave.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnSave.ForeColor = Color.White;
             btnSave.Location = new Point(80, 110);
@@ -54,7 +54,7 @@ namespace TelkomMedikaForm
             //
             // btnCancel
             //
-            btnCancel.BackColor = Color.Gray;
+            btnCancel.BackColor = Color.FromArgb(0x9E, 0x9E, 0x9E);
             btnCancel.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnCancel.ForeColor = Color.White;
             btnCancel.Location = new Point(180, 110);

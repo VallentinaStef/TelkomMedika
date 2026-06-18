@@ -17,8 +17,11 @@ namespace TelkomMedikaForm
         private void LoadUserProfile()
         {
             lblUsernameValue.Text = UserSession.Username;
+            lblUsernameValue.ForeColor = Color.FromArgb(0x33, 0x33, 0x33);
             lblRoleValue.Text = UserSession.Role;
+            lblRoleValue.ForeColor = Color.FromArgb(0x33, 0x33, 0x33);
             lblNameValue.Text = UserSession.Name;
+            lblNameValue.ForeColor = Color.FromArgb(0x33, 0x33, 0x33);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
