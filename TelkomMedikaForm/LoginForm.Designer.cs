@@ -25,15 +25,14 @@
             btnLogin = new Button();
             btnExit = new Button();
             lblStatus = new Label();
-            panelHeader = new Panel();
             SuspendLayout();
             // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(300, 18);
+            lblTitle.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
+            lblTitle.Location = new Point(300, 40);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(200, 46);
             lblTitle.TabIndex = 0;
@@ -140,21 +139,13 @@
             lblStatus.TabIndex = 9;
             lblStatus.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // panelHeader
-            // 
-            panelHeader = new Panel();
-            panelHeader.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
-            panelHeader.Dock = DockStyle.Top;
-            panelHeader.Height = 80;
-            panelHeader.Controls.Add(lblTitle);
-            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(800, 520);
-            Controls.Add(panelHeader);
+            Controls.Add(lblTitle);
             Controls.Add(lblStatus);
             Controls.Add(btnExit);
             Controls.Add(btnLogin);
@@ -171,7 +162,6 @@
             PerformLayout();
         }
 
-        private Panel panelHeader;
         private Label lblTitle;
         private Label lblSubtitle;
         private Label lblUsername;
