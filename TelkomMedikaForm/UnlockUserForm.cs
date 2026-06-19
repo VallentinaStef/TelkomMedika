@@ -6,6 +6,7 @@ namespace TelkomMedikaForm
     public partial class UnlockUserForm : Form
     {
         private DataTable _dtLocked;
+        private System.Windows.Forms.Timer _refreshTimer;
 
         public UnlockUserForm()
         {
@@ -20,6 +21,11 @@ namespace TelkomMedikaForm
         private void UnlockUserForm_Load(object sender, EventArgs e)
         {
             RefreshLockedList();
+
+            _refreshTimer = new System.Windows.Forms.Timer();
+            _refreshTimer.Interval = 1000;
+            _refreshTimer.Tick += RefreshTimer_Tick;
+            _refreshTimer.Start();
         }
 
         private void RefreshLockedList()
@@ -46,6 +52,34 @@ namespace TelkomMedikaForm
                 if (row.Cells["Username"].Value is string user)
                     txtUsername.Text = user;
             }
+        }
+
+        private void RefreshTimer_Tick(object sender, EventArgs e)
+        {
+            var svc = AuthService.Instance;
+            foreach (DataRow row in _dtLocked.Rows)
+            {
+                if (row["Status"].ToString() == "Terkunci")
+                {
+                    var rem = svc.GetRemainingLockTime((string)row["Username"]);
+                    if (rem.HasValue)
+                    {
+                        row["Sisa Waktu"] = $"{(int)rem.Value.TotalMinutes} menit {rem.Value.Seconds} detik";
+                    }
+                    else
+                    {
+                        row["Status"] = "Normal";
+                        row["Sisa Waktu"] = "\u2014";
+                    }
+                }
+            }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            _refreshTimer?.Stop();
+            _refreshTimer?.Dispose();
+            base.OnFormClosing(e);
         }
 
         private void btnUnlock_Click(object sender, EventArgs e)
