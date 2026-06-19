@@ -66,6 +66,7 @@ namespace TelkomMedika.Services
                 UserSession.Username = username;
                 UserSession.Name = "Admin";
                 UserSession.Role = "Admin";
+                ProfileService<AdminProfile>.Seed(username, new AdminProfile { Username = username, Name = "Admin", Role = "Admin" });
 
                 return new Response<User> { Status = true, Data = CurrentUser, Message = "Login berhasil sebagai Admin!" };
             }
@@ -79,6 +80,7 @@ namespace TelkomMedika.Services
                 UserSession.Username = username;
                 UserSession.Name = "Dr. Budi";
                 UserSession.Role = "Dokter";
+                ProfileService<DokterProfile>.Seed(username, new DokterProfile { Username = username, Name = "Dr. Budi", Role = "Dokter", Spesialisasi = "Umum", NomorSTR = "STR-12345" });
 
                 return new Response<User> { Status = true, Data = CurrentUser, Message = "Login berhasil sebagai Dokter!" };
             }
@@ -92,6 +94,7 @@ namespace TelkomMedika.Services
                 UserSession.Username = username;
                 UserSession.Name = "Andi";
                 UserSession.Role = "Pasien";
+                ProfileService<PasienProfile>.Seed(username, new PasienProfile { Username = username, Name = "Andi", Role = "Pasien", NoTelp = "08123456789", Alamat = "Jl. Kesehatan No. 1" });
 
                 return new Response<User> { Status = true, Data = CurrentUser, Message = "Login berhasil sebagai Pasien!" };
             }
