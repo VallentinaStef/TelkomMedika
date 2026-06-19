@@ -10,6 +10,7 @@ namespace TelkomMedikaForm
         {
             InitializeComponent();
             authService = TelkomMedika.Services.AuthService.Instance;
+            AcceptButton = btnLogin;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
