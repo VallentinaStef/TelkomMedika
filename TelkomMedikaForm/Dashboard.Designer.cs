@@ -30,7 +30,7 @@
             panelSidebar.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
             panelSidebar.Dock = DockStyle.Left;
             panelSidebar.Name = "panelSidebar";
-            panelSidebar.Size = new Size(220, 500);
+            panelSidebar.Size = new Size(300, 500);
             panelSidebar.TabIndex = 0;
             // 
             // panelContent

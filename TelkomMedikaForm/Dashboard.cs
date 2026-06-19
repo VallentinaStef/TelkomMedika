@@ -38,8 +38,8 @@ namespace TelkomMedikaForm
                     ForeColor = Color.White,
                     Font = new Font("Segoe UI", 10F, FontStyle.Bold),
                     TextAlign = ContentAlignment.MiddleLeft,
-                    Padding = new Padding(10, 0, 0, 0),
-                    Size = new Size(200, 45),
+                    Padding = new Padding(5, 0, 0, 0),
+                    Size = new Size(280, 45),
                     Location = new Point(10, y),
                     FlatAppearance = { BorderSize = 0, MouseOverBackColor = Color.FromArgb(0x8E, 0x00, 0x00) }
                 };
@@ -58,9 +58,8 @@ namespace TelkomMedikaForm
                 {
                     ("Profil", "profil"),
                     ("Data Pasien", "datapasien"),
-                    ("Reservasi", "reservasi"),
-                    ("Jadwal Dokter", "jadwaldokter"),
-                    ("Notifikasi & Konsultasi", "notifikasi"),
+                    ("Reservasi dan Jadwal", "reservasijadwal"),
+                    ("Notifikasi dan Konsultasi", "notifikasi"),
                     ("Unlock User", "unlock"),
                     ("Logout", "logout")
                 },
@@ -68,19 +67,15 @@ namespace TelkomMedikaForm
                 {
                     ("Profil", "profil"),
                     ("Rekam Medis Pasien", "rekammedis"),
-                    ("Riwayat Medis", "riwayatmedis"),
-                    ("Jadwal Dokter", "jadwaldokter"),
-                    ("Reservasi", "reservasi"),
+                    ("Jadwal dan Reservasi", "jadwalreservasi"),
                     ("Logout", "logout")
                 },
                 ["Pasien"] = new()
                 {
                     ("Profil", "profil"),
-                    ("Rekam Medis Pribadi", "rekammedis"),
-                    ("Riwayat Layanan", "riwayatlayanan"),
-                    ("Reservasi", "reservasi"),
-                    ("Jadwal Operasional", "jadwaloperasional"),
-                    ("Notifikasi & Konsultasi", "notifikasi"),
+                    ("Rekam Medis dan Riwayat", "rekammedisriwayat"),
+                    ("Reservasi dan Jadwal", "reservasijadwal"),
+                    ("Notifikasi dan Konsultasi", "notifikasi"),
                     ("Pengingat Obat", "pengingatobat"),
                     ("Logout", "logout")
                 }
