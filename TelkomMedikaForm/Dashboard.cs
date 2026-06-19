@@ -126,6 +126,15 @@ namespace TelkomMedikaForm
 
         private void DoLogout()
         {
+            var confirm = MessageBox.Show(
+                "Yakin ingin logout?",
+                "Konfirmasi Logout",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+            if (confirm != DialogResult.Yes)
+                return;
+
             var authService = TelkomMedika.Services.AuthService.Instance;
             authService.Logout();
 
