@@ -95,6 +95,15 @@ namespace TelkomMedikaForm
                 return;
             }
 
+            var confirm = MessageBox.Show(
+                $"Yakin ingin membuka kunci user '{username}'?",
+                "Konfirmasi",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+            if (confirm != DialogResult.Yes)
+                return;
+
             var svc = AuthService.Instance;
             if (!svc.IsUserRegistered(username))
             {
