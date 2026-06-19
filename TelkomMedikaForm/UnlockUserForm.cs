@@ -95,6 +95,21 @@ namespace TelkomMedikaForm
                 return;
             }
 
+            var svc = AuthService.Instance;
+            if (!svc.IsUserRegistered(username))
+            {
+                MessageBox.Show($"User '{username}' tidak terdaftar dalam sistem.",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!svc.GetRemainingLockTime(username).HasValue)
+            {
+                MessageBox.Show($"User '{username}' tidak sedang terkunci.",
+                                "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var confirm = MessageBox.Show(
                 $"Yakin ingin membuka kunci user '{username}'?",
                 "Konfirmasi",
@@ -104,34 +119,18 @@ namespace TelkomMedikaForm
             if (confirm != DialogResult.Yes)
                 return;
 
-            var svc = AuthService.Instance;
-            if (!svc.IsUserRegistered(username))
+            svc.UnlockUser(username);
+            MessageBox.Show($"User '{username}' telah di-unlock.", "Sukses",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            var rows = _dtLocked.Select($"Username = '{username.Replace("'", "''")}'");
+            foreach (var row in rows)
             {
-                MessageBox.Show($"User '{username}' tidak terdaftar dalam sistem.",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                row["Status"] = "Normal";
+                row["Sisa Waktu"] = "\u2014";
             }
 
-            bool removed = svc.UnlockUser(username);
-            if (removed)
-            {
-                MessageBox.Show($"User '{username}' telah di-unlock.", "Sukses",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                var rows = _dtLocked.Select($"Username = '{username.Replace("'", "''")}'");
-                foreach (var row in rows)
-                {
-                    row["Status"] = "Normal";
-                    row["Sisa Waktu"] = "\u2014";
-                }
-
-                txtUsername.Clear();
-            }
-            else
-            {
-                MessageBox.Show($"User '{username}' tidak sedang terkunci.",
-                                "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            txtUsername.Clear();
         }
     }
 }
