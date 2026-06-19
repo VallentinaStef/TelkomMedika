@@ -42,6 +42,9 @@ namespace TelkomMedikaForm
                     : "\u2014";
                 _dtLocked.Rows.Add(user, status, sisa);
             }
+
+            dgvLockedUsers.ClearSelection();
+            txtUsername.Clear();
         }
 
         private void dgvLockedUsers_SelectionChanged(object sender, EventArgs e)
