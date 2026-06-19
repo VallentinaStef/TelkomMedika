@@ -64,6 +64,8 @@ namespace TelkomMedikaForm
             if (updated)
             {
                 UserSession.Name = newName;
+                MessageBox.Show("Profil berhasil disimpan.", "Sukses",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
             }
             else
