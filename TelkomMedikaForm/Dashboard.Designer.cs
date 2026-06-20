@@ -2,15 +2,8 @@
 {
     partial class Dashboard
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,114 +13,105 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            btnLogout = new Button();
-            btnMedicalHistory = new Button();
-            btnPatientCard = new Button();
-            btnMedicalRecord = new Button();
+            panelSidebar = new Panel();
+            panelContent = new Panel();
+            lblWelcome = new Label();
+            lblRoleDisplay = new Label();
+            lblAppTitle = new Label();
+            panelHeader = new Panel();
+            panelContent.SuspendLayout();
+            panelHeader.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
+            // panelSidebar
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(274, 114);
-            label1.Margin = new Padding(2, 0, 2, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(82, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Dashboard";
+            panelSidebar.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
+            panelSidebar.Dock = DockStyle.Left;
+            panelSidebar.Name = "panelSidebar";
+            panelSidebar.Size = new Size(300, 500);
+            panelSidebar.TabIndex = 0;
             // 
-            // btnLogout
+            // panelContent
             // 
-            btnLogout.AllowDrop = true;
-            btnLogout.AutoEllipsis = true;
-            btnLogout.Location = new Point(467, 273);
-            btnLogout.Margin = new Padding(2);
-            btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(90, 27);
-            btnLogout.TabIndex = 1;
-            btnLogout.Text = "Logout";
-            btnLogout.UseVisualStyleBackColor = true;
-            btnLogout.Click += btnLogout_Click;
+            panelContent.BackColor = Color.White;
+            panelContent.Controls.Add(lblWelcome);
+            panelContent.Controls.Add(lblRoleDisplay);
+            panelContent.Dock = DockStyle.Fill;
+            panelContent.Location = new Point(220, 60);
+            panelContent.Name = "panelContent";
+            panelContent.Size = new Size(580, 440);
+            panelContent.TabIndex = 1;
             // 
-            // btnMedicalHistory
+            // lblAppTitle
             // 
-            btnMedicalHistory.BackColor = Color.FromArgb(0, 112, 192);
-            btnMedicalHistory.FlatStyle = FlatStyle.Flat;
-            btnMedicalHistory.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnMedicalHistory.ForeColor = Color.White;
-            btnMedicalHistory.Location = new Point(237, 171);
-            btnMedicalHistory.Margin = new Padding(2);
-            btnMedicalHistory.Name = "btnMedicalHistory";
-            btnMedicalHistory.Size = new Size(166, 35);
-            btnMedicalHistory.TabIndex = 2;
-            btnMedicalHistory.Text = "Riwayat Layanan";
-            btnMedicalHistory.UseVisualStyleBackColor = false;
-            btnMedicalHistory.Click += btnMedicalHistory_Click;
+            lblAppTitle.AutoSize = true;
+            lblAppTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            lblAppTitle.ForeColor = Color.White;
+            lblAppTitle.Location = new Point(20, 15);
+            lblAppTitle.Name = "lblAppTitle";
+            lblAppTitle.Size = new Size(147, 32);
+            lblAppTitle.TabIndex = 0;
+            lblAppTitle.Text = "Telkomedika";
             // 
-            // btnPatientCard
+            // panelHeader
             // 
-            btnPatientCard.BackColor = Color.FromArgb(0, 112, 192);
-            btnPatientCard.FlatStyle = FlatStyle.Flat;
-            btnPatientCard.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnPatientCard.ForeColor = Color.White;
-            btnPatientCard.Location = new Point(237, 222);
-            btnPatientCard.Margin = new Padding(2);
-            btnPatientCard.Name = "btnPatientCard";
-            btnPatientCard.Size = new Size(166, 35);
-            btnPatientCard.TabIndex = 3;
-            btnPatientCard.Text = "Kartu Pasien Digital";
-            btnPatientCard.UseVisualStyleBackColor = false;
-            btnPatientCard.Click += btnPatientCard_Click;
+            panelHeader.BackColor = Color.FromArgb(0xB7, 0x1C, 0x1C);
+            panelHeader.Controls.Add(lblAppTitle);
+            panelHeader.Dock = DockStyle.Top;
+            panelHeader.Location = new Point(0, 0);
+            panelHeader.Name = "panelHeader";
+            panelHeader.Size = new Size(800, 60);
+            panelHeader.TabIndex = 2;
             // 
-            // btnMedicalRecord
+            // lblWelcome
             // 
-            btnMedicalRecord.BackColor = Color.FromArgb(0, 112, 192);
-            btnMedicalRecord.FlatStyle = FlatStyle.Flat;
-            btnMedicalRecord.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnMedicalRecord.ForeColor = Color.White;
-            btnMedicalRecord.Location = new Point(237, 273);
-            btnMedicalRecord.Margin = new Padding(2);
-            btnMedicalRecord.Name = "btnMedicalRecord";
-            btnMedicalRecord.Size = new Size(166, 35);
-            btnMedicalRecord.TabIndex = 4;
-            btnMedicalRecord.Text = "Rekam Medis Digital";
-            btnMedicalRecord.UseVisualStyleBackColor = false;
-            btnMedicalRecord.Click += btnMedicalRecord_Click;
+            lblWelcome.AutoSize = true;
+            lblWelcome.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblWelcome.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
+            lblWelcome.Location = new Point(150, 160);
+            lblWelcome.Name = "lblWelcome";
+            lblWelcome.Size = new Size(0, 37);
+            lblWelcome.TabIndex = 0;
+            lblWelcome.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblRoleDisplay
+            // 
+            lblRoleDisplay.AutoSize = true;
+            lblRoleDisplay.Font = new Font("Segoe UI", 12F);
+            lblRoleDisplay.ForeColor = Color.FromArgb(0x33, 0x33, 0x33);
+            lblRoleDisplay.Location = new Point(150, 210);
+            lblRoleDisplay.Name = "lblRoleDisplay";
+            lblRoleDisplay.Size = new Size(0, 28);
+            lblRoleDisplay.TabIndex = 1;
+            lblRoleDisplay.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(640, 360);
-            Controls.Add(btnMedicalRecord);
-            Controls.Add(btnPatientCard);
-            Controls.Add(btnMedicalHistory);
-            Controls.Add(btnLogout);
-            Controls.Add(label1);
-            Margin = new Padding(2);
+            ClientSize = new Size(800, 500);
+            Controls.Add(panelContent);
+            Controls.Add(panelSidebar);
+            Controls.Add(panelHeader);
             Name = "Dashboard";
-            Text = "TelkomMedika";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "TelkomMedika - Dashboard";
+            FormClosed += Dashboard_FormClosed;
+            Load += Dashboard_Load;
+            panelContent.ResumeLayout(false);
+            panelContent.PerformLayout();
+            panelHeader.ResumeLayout(false);
+            panelHeader.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
-        #endregion
-
-        private Label label1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private Button btnLogout;
-        private Button btnMedicalHistory;
-        private Button btnPatientCard;
-        private Button btnMedicalRecord;
+        private Panel panelSidebar;
+        private Panel panelContent;
+        private Panel panelHeader;
+        private Label lblAppTitle;
+        private Label lblWelcome;
+        private Label lblRoleDisplay;
     }
 }
