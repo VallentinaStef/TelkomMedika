@@ -61,5 +61,11 @@ namespace TelkomMedikaForm
         {
             txtPassword.UseSystemPasswordChar = !chkShowPassword.Checked;
         }
+
+        private void txtUsername_TextChanged(object sender, EventArgs e)
+        {
+            lblStatus.Text = "";
+            lblLockRemaining.Text = "";
+        }
     }
 }
