@@ -57,7 +57,12 @@ namespace TelkomMedikaForm
             dgvJadwal.AllowUserToAddRows = false;
             dgvJadwal.AllowUserToDeleteRows = false;
             dgvJadwal.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvJadwal.BackgroundColor = Color.White;
+            dgvJadwal.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
+            dgvJadwal.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvJadwal.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             dgvJadwal.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvJadwal.EnableHeadersVisualStyles = false;
             dgvJadwal.Location = new Point(12, 12);
             dgvJadwal.MultiSelect = false;
             dgvJadwal.Name = "dgvJadwal";
@@ -93,12 +98,15 @@ namespace TelkomMedikaForm
             // 
             // btnTambah
             // 
+            btnTambah.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
+            btnTambah.FlatStyle = FlatStyle.Flat;
+            btnTambah.ForeColor = Color.White;
             btnTambah.Location = new Point(555, 25);
             btnTambah.Name = "btnTambah";
             btnTambah.Size = new Size(90, 30);
             btnTambah.TabIndex = 6;
             btnTambah.Text = "Tambah";
-            btnTambah.UseVisualStyleBackColor = true;
+            btnTambah.UseVisualStyleBackColor = false;
             btnTambah.Click += btnTambah_Click;
             // 
             // txtCekJam
@@ -112,12 +120,15 @@ namespace TelkomMedikaForm
             // 
             // btnCekReminder
             // 
+            btnCekReminder.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
+            btnCekReminder.FlatStyle = FlatStyle.Flat;
+            btnCekReminder.ForeColor = Color.White;
             btnCekReminder.Location = new Point(217, 25);
             btnCekReminder.Name = "btnCekReminder";
             btnCekReminder.Size = new Size(120, 30);
             btnCekReminder.TabIndex = 2;
             btnCekReminder.Text = "Cek Reminder";
-            btnCekReminder.UseVisualStyleBackColor = true;
+            btnCekReminder.UseVisualStyleBackColor = false;
             btnCekReminder.Click += btnCekReminder_Click;
             // 
             // rtbOutput
@@ -132,22 +143,29 @@ namespace TelkomMedikaForm
             // 
             // btnConfig
             // 
+            btnConfig.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
+            btnConfig.FlatStyle = FlatStyle.Flat;
+            btnConfig.ForeColor = Color.White;
             btnConfig.Location = new Point(12, 480);
             btnConfig.Name = "btnConfig";
             btnConfig.Size = new Size(180, 34);
             btnConfig.TabIndex = 3;
             btnConfig.Text = "Konfigurasi Reminder";
-            btnConfig.UseVisualStyleBackColor = true;
+            btnConfig.UseVisualStyleBackColor = false;
             btnConfig.Click += btnConfig_Click;
             // 
             // btnKembali
             // 
+            btnKembali.BackColor = Color.White;
+            btnKembali.FlatAppearance.BorderColor = Color.FromArgb(0x8E, 0x00, 0x00);
+            btnKembali.FlatStyle = FlatStyle.Flat;
+            btnKembali.ForeColor = Color.FromArgb(0x8E, 0x00, 0x00);
             btnKembali.Location = new Point(592, 480);
             btnKembali.Name = "btnKembali";
             btnKembali.Size = new Size(80, 34);
             btnKembali.TabIndex = 4;
             btnKembali.Text = "Kembali";
-            btnKembali.UseVisualStyleBackColor = true;
+            btnKembali.UseVisualStyleBackColor = false;
             btnKembali.Click += btnKembali_Click;
             // 
             // gbTambah
@@ -159,12 +177,14 @@ namespace TelkomMedikaForm
             gbTambah.Controls.Add(txtWaktu);
             gbTambah.Controls.Add(txtDosis);
             gbTambah.Controls.Add(btnTambah);
+            gbTambah.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
             gbTambah.Location = new Point(12, 218);
             gbTambah.Name = "gbTambah";
             gbTambah.Size = new Size(660, 100);
             gbTambah.TabIndex = 1;
             gbTambah.TabStop = false;
             gbTambah.Text = "Tambah Jadwal Baru";
+            gbTambah.BackColor = Color.FromArgb(0xFD, 0xEC, 0xEC);
             // 
             // lblNama
             // 
@@ -195,10 +215,12 @@ namespace TelkomMedikaForm
             // 
             // gbPengingat
             // 
+            gbPengingat.BackColor = Color.FromArgb(0xFD, 0xEC, 0xEC);
             gbPengingat.Controls.Add(lblJam);
             gbPengingat.Controls.Add(txtCekJam);
             gbPengingat.Controls.Add(btnCekReminder);
             gbPengingat.Controls.Add(rtbOutput);
+            gbPengingat.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
             gbPengingat.Location = new Point(12, 324);
             gbPengingat.Name = "gbPengingat";
             gbPengingat.Size = new Size(660, 150);
@@ -217,18 +239,22 @@ namespace TelkomMedikaForm
             // 
             // btnHapus
             // 
+            btnHapus.BackColor = Color.FromArgb(0x8E, 0x00, 0x00);
+            btnHapus.FlatStyle = FlatStyle.Flat;
+            btnHapus.ForeColor = Color.White;
             btnHapus.Location = new Point(567, 170);
             btnHapus.Name = "btnHapus";
             btnHapus.Size = new Size(90, 30);
             btnHapus.TabIndex = 7;
             btnHapus.Text = "Hapus";
-            btnHapus.UseVisualStyleBackColor = true;
+            btnHapus.UseVisualStyleBackColor = false;
             btnHapus.Click += btnHapus_Click;
             // 
             // ObatForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(684, 526);
             Controls.Add(btnHapus);
             Controls.Add(btnKembali);
