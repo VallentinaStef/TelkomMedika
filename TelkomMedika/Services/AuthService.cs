@@ -1,115 +1,166 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tubes_KPL_Kelompok_1.src.Models;
+﻿using Tubes_KPL_Kelompok_1.src.Models;
 using Tubes_KPL_Kelompok_1.src.States;
 using Tubes_KPL_Kelompok_1.src.Utils;
 
 namespace TelkomMedika.Services
 {
-    public class AuthService
+    public sealed class AuthService
     {
+        // singleton
+        public static AuthService Instance { get; } = new AuthService();
+
+        private AuthService() { }
+
         public AuthState State { get; private set; } = AuthState.LoggedOut;
         public User CurrentUser;
 
-        private int loginAttempts = 0;
+        // per-user login info
+        private class LoginInfo
+        {
+            public int Attempts;
+            public DateTime? LockUntil;
+        }
+
+        private readonly System.Collections.Concurrent.ConcurrentDictionary<string, LoginInfo> _loginMap = new();
+
         private const int MAX_ATTEMPTS = 3;
+        private static readonly TimeSpan LOCK_DURATION = TimeSpan.FromMinutes(15);
 
         public Response<User> Login(string username, string password)
         {
-            if (loginAttempts >= MAX_ATTEMPTS)
+            if (string.IsNullOrWhiteSpace(username))
             {
+                return new Response<User> { Status = false, Message = "Username wajib diisi!" };
+            }
+
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                return new Response<User> { Status = false, Message = "Password wajib diisi!" };
+            }
+
+            if (username != "admin" && username != "dokter" && username != "pasien")
+            {
+                return new Response<User> { Status = false, Message = "Username tidak terdaftar!" };
+            }
+
+            var info = _loginMap.GetOrAdd(username, _ => new LoginInfo { Attempts = 0, LockUntil = null });
+
+            if (info.LockUntil.HasValue && info.LockUntil.Value > DateTime.UtcNow)
+            {
+                var remaining = info.LockUntil.Value - DateTime.UtcNow;
+                var minutes = (int)Math.Ceiling(remaining.TotalMinutes);
                 return new Response<User>
                 {
                     Status = false,
-                    Message = "Akun terkunci! Terlalu banyak percobaan login."
+                    Message = $"Akun terkunci. Coba lagi dalam {minutes} menit."
                 };
             }
 
-            // Admin
+            // validate credentials (existing hardcoded users)
             if (username == "admin" && password == "123")
             {
                 State = AuthState.LoggedIn;
-                loginAttempts = 0;
+                _loginMap.TryRemove(username, out _);
 
-                CurrentUser = new User
-                {
-                    Username = username,
-                    Name = "Admin",
-                    Role = "Admin"
-                };
+                CurrentUser = new User { Username = username, Name = "Admin", Role = "Admin" };
+                UserSession.Username = username;
+                UserSession.Name = "Admin";
+                UserSession.Role = "Admin";
+                ProfileService<AdminProfile>.Seed(username, new AdminProfile { Username = username, Name = "Admin", Role = "Admin" });
 
-                return new Response<User>
-                {
-                    Status = true,
-                    Data = CurrentUser,
-                    Message = "Login berhasil sebagai Admin!"
-                };
+                return new Response<User> { Status = true, Data = CurrentUser, Message = "Login berhasil sebagai Admin!" };
             }
 
-            // Dokter
             if (username == "dokter" && password == "123")
             {
                 State = AuthState.LoggedIn;
-                loginAttempts = 0;
+                _loginMap.TryRemove(username, out _);
 
-                CurrentUser = new User
-                {
-                    Username = username,
-                    Name = "Dr. Budi",
-                    Role = "Dokter"
-                };
+                CurrentUser = new User { Username = username, Name = "Dr. Budi", Role = "Dokter" };
+                UserSession.Username = username;
+                UserSession.Name = "Dr. Budi";
+                UserSession.Role = "Dokter";
+                ProfileService<DokterProfile>.Seed(username, new DokterProfile { Username = username, Name = "Dr. Budi", Role = "Dokter", Spesialisasi = "Umum", NomorSTR = "STR-12345" });
 
-                return new Response<User>
-                {
-                    Status = true,
-                    Data = CurrentUser,
-                    Message = "Login berhasil sebagai Dokter!"
-                };
+                return new Response<User> { Status = true, Data = CurrentUser, Message = "Login berhasil sebagai Dokter!" };
             }
 
-            // Pasien
             if (username == "pasien" && password == "123")
             {
                 State = AuthState.LoggedIn;
-                loginAttempts = 0;
+                _loginMap.TryRemove(username, out _);
 
-                CurrentUser = new User
-                {
-                    Username = username,
-                    Name = "Andi",
-                    Role = "Pasien"
-                };
+                CurrentUser = new User { Username = username, Name = "Andi", Role = "Pasien" };
+                UserSession.Username = username;
+                UserSession.Name = "Andi";
+                UserSession.Role = "Pasien";
+                ProfileService<PasienProfile>.Seed(username, new PasienProfile { Username = username, Name = "Andi", Role = "Pasien", NoTelp = "08123456789", Alamat = "Jl. Kesehatan No. 1" });
 
-                return new Response<User>
-                {
-                    Status = true,
-                    Data = CurrentUser,
-                    Message = "Login berhasil sebagai Pasien!"
-                };
+                return new Response<User> { Status = true, Data = CurrentUser, Message = "Login berhasil sebagai Pasien!" };
             }
 
-            loginAttempts++;
+            // wrong credentials
+            info.Attempts++;
+            int remainingAttempts = MAX_ATTEMPTS - info.Attempts;
 
-            return new Response<User>
+            if (info.Attempts >= MAX_ATTEMPTS)
             {
-                Status = false,
-                Message = $"Login gagal! Percobaan ke-{loginAttempts}"
-            };
+                info.LockUntil = DateTime.UtcNow.Add(LOCK_DURATION);
+                return new Response<User> { Status = false, Message = $"Akun terkunci. Coba lagi dalam {LOCK_DURATION.TotalMinutes} menit." };
+            }
+
+            return new Response<User> { Status = false, Message = $"Login gagal! Sisa percobaan: {remainingAttempts}" };
         }
 
         public Response<string> Logout()
         {
             State = AuthState.LoggedOut;
             CurrentUser = null;
+            UserSession.Clear();
 
-            return new Response<string>
+            return new Response<string> { Status = true, Message = "Logout berhasil!" };
+        }
+
+        // admin / helper APIs
+        public bool UnlockUser(string username)
+        {
+            return _loginMap.TryRemove(username, out _);
+        }
+
+        public void ClearAllAttempts()
+        {
+            _loginMap.Clear();
+        }
+
+        public int GetAttempts(string username)
+        {
+            return _loginMap.TryGetValue(username, out var info) ? info.Attempts : 0;
+        }
+
+        public TimeSpan? GetRemainingLockTime(string username)
+        {
+            if (_loginMap.TryGetValue(username, out var info) && info.LockUntil.HasValue)
             {
-                Status = true,
-                Message = "Logout berhasil!"
-            };
+                var rem = info.LockUntil.Value - DateTime.UtcNow;
+                return rem > TimeSpan.Zero ? rem : (TimeSpan?)null;
+            }
+            return null;
+        }
+
+        public List<string> GetRegisteredUsers()
+        {
+            return new List<string> { "admin", "dokter", "pasien" };
+        }
+
+        public bool IsUserRegistered(string username)
+        {
+            return GetRegisteredUsers().Contains(username, StringComparer.OrdinalIgnoreCase);
+        }
+
+        public List<string> GetLockedUsers()
+        {
+            var now = DateTime.UtcNow;
+            return _loginMap.Where(kv => kv.Value.LockUntil.HasValue && kv.Value.LockUntil.Value > now).Select(kv => kv.Key).ToList();
         }
     }
 }
