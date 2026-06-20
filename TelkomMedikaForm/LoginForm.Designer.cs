@@ -2,8 +2,15 @@
 {
     partial class LoginForm
     {
+        /// <summary>
+        ///  Required designer variable.
+        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
+        /// <summary>
+        ///  Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -13,179 +20,92 @@
             base.Dispose(disposing);
         }
 
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
+        /// </summary>
         private void InitializeComponent()
         {
-            lblTitle = new Label();
-            lblSubtitle = new Label();
-            lblUsername = new Label();
-            txtUsername = new TextBox();
-            lblPassword = new Label();
-            txtPassword = new TextBox();
-            chkShowPassword = new CheckBox();
-            btnLogin = new Button();
-            btnExit = new Button();
-            lblStatus = new Label();
-            lblLockRemaining = new Label();
+            label1 = new Label();
+            button1 = new Button();
+            txtusn = new TextBox();
+            label2 = new Label();
+            txtpw = new TextBox();
             SuspendLayout();
             // 
-            // lblTitle
+            // label1
             // 
-            lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            lblTitle.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
-            lblTitle.Location = new Point(300, 40);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(200, 46);
-            lblTitle.TabIndex = 0;
-            lblTitle.Text = "Telkomedika";
+            label1.AutoSize = true;
+            label1.Location = new Point(261, 58);
+            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(75, 20);
+            label1.TabIndex = 0;
+            label1.Text = "Username";
             // 
-            // lblSubtitle
+            // button1
             // 
-            lblSubtitle.AutoSize = true;
-            lblSubtitle.Font = new Font("Segoe UI", 11F);
-            lblSubtitle.ForeColor = Color.FromArgb(0x33, 0x33, 0x33);
-            lblSubtitle.Location = new Point(195, 100);
-            lblSubtitle.Name = "lblSubtitle";
-            lblSubtitle.Size = new Size(410, 25);
-            lblSubtitle.TabIndex = 1;
-            lblSubtitle.Text = "Selamat Datang, Silakan Masukkan Username dan Password";
-            lblSubtitle.TextAlign = ContentAlignment.MiddleCenter;
+            button1.Location = new Point(270, 228);
+            button1.Margin = new Padding(2, 2, 2, 2);
+            button1.Name = "button1";
+            button1.Size = new Size(90, 27);
+            button1.TabIndex = 1;
+            button1.Text = "Login";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
-            // lblUsername
+            // txtusn
             // 
-            lblUsername.AutoSize = true;
-            lblUsername.Font = new Font("Segoe UI", 10F);
-            lblUsername.Location = new Point(250, 170);
-            lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(89, 23);
-            lblUsername.TabIndex = 2;
-            lblUsername.Text = "Username:";
+            txtusn.Location = new Point(261, 92);
+            txtusn.Margin = new Padding(2, 2, 2, 2);
+            txtusn.Name = "txtusn";
+            txtusn.Size = new Size(121, 27);
+            txtusn.TabIndex = 2;
             // 
-            // txtUsername
+            // label2
             // 
-            txtUsername.Font = new Font("Segoe UI", 10F);
-            txtUsername.Location = new Point(250, 200);
-            txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(300, 30);
-            txtUsername.TabIndex = 3;
-            txtUsername.TextChanged += txtUsername_TextChanged;
+            label2.AutoSize = true;
+            label2.Location = new Point(261, 137);
+            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(70, 20);
+            label2.TabIndex = 3;
+            label2.Text = "Password";
             // 
-            // lblPassword
+            // txtpw
             // 
-            lblPassword.AutoSize = true;
-            lblPassword.Font = new Font("Segoe UI", 10F);
-            lblPassword.Location = new Point(250, 250);
-            lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(85, 23);
-            lblPassword.TabIndex = 4;
-            lblPassword.Text = "Password:";
-            // 
-            // txtPassword
-            // 
-            txtPassword.Font = new Font("Segoe UI", 10F);
-            txtPassword.Location = new Point(250, 280);
-            txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(300, 30);
-            txtPassword.TabIndex = 5;
-            txtPassword.UseSystemPasswordChar = true;
-            // 
-            // chkShowPassword
-            // 
-            chkShowPassword.AutoSize = true;
-            chkShowPassword.Font = new Font("Segoe UI", 9F);
-            chkShowPassword.Location = new Point(250, 320);
-            chkShowPassword.Name = "chkShowPassword";
-            chkShowPassword.Size = new Size(149, 24);
-            chkShowPassword.TabIndex = 6;
-            chkShowPassword.Text = "Tampilkan Password";
-            chkShowPassword.UseVisualStyleBackColor = true;
-            chkShowPassword.CheckedChanged += chkShowPassword_CheckedChanged;
-            // 
-            // btnLogin
-            // 
-            btnLogin.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
-            btnLogin.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(310, 365);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(180, 40);
-            btnLogin.TabIndex = 7;
-            btnLogin.Text = "Login";
-            btnLogin.UseVisualStyleBackColor = false;
-            btnLogin.Click += btnLogin_Click;
-            // 
-            // btnExit
-            // 
-            btnExit.BackColor = Color.White;
-            btnExit.FlatStyle = FlatStyle.Flat;
-            btnExit.FlatAppearance.BorderColor = Color.FromArgb(0x8E, 0x00, 0x00);
-            btnExit.FlatAppearance.BorderSize = 2;
-            btnExit.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnExit.ForeColor = Color.FromArgb(0x8E, 0x00, 0x00);
-            btnExit.Location = new Point(310, 415);
-            btnExit.Name = "btnExit";
-            btnExit.Size = new Size(180, 40);
-            btnExit.TabIndex = 8;
-            btnExit.Text = "Exit";
-            btnExit.UseVisualStyleBackColor = false;
-            btnExit.Click += btnExit_Click;
-            // 
-            // lblStatus
-            // 
-            lblStatus.AutoSize = true;
-            lblStatus.Font = new Font("Segoe UI", 10F);
-            lblStatus.ForeColor = Color.Red;
-            lblStatus.Location = new Point(250, 470);
-            lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(0, 23);
-            lblStatus.TabIndex = 9;
-            lblStatus.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // lblLockRemaining
-            // 
-            lblLockRemaining.AutoSize = true;
-            lblLockRemaining.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblLockRemaining.ForeColor = Color.Red;
-            lblLockRemaining.Location = new Point(250, 355);
-            lblLockRemaining.Name = "lblLockRemaining";
-            lblLockRemaining.Size = new Size(0, 20);
-            lblLockRemaining.TabIndex = 10;
-            lblLockRemaining.TextAlign = ContentAlignment.MiddleCenter;
+            txtpw.Location = new Point(261, 169);
+            txtpw.Margin = new Padding(2, 2, 2, 2);
+            txtpw.Name = "txtpw";
+            txtpw.Size = new Size(113, 27);
+            txtpw.TabIndex = 4;
+            txtpw.UseSystemPasswordChar = true;
             // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            ClientSize = new Size(800, 520);
-            Controls.Add(lblTitle);
-            Controls.Add(lblStatus);
-            Controls.Add(lblLockRemaining);
-            Controls.Add(btnExit);
-            Controls.Add(btnLogin);
-            Controls.Add(chkShowPassword);
-            Controls.Add(txtPassword);
-            Controls.Add(lblPassword);
-            Controls.Add(txtUsername);
-            Controls.Add(lblUsername);
-            Controls.Add(lblSubtitle);
+            ClientSize = new Size(640, 360);
+            Controls.Add(txtpw);
+            Controls.Add(label2);
+            Controls.Add(txtusn);
+            Controls.Add(button1);
+            Controls.Add(label1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "LoginForm";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "TelkomMedika - Login";
+            Text = "TelkomMedika";
             ResumeLayout(false);
             PerformLayout();
         }
 
-        private Label lblTitle;
-        private Label lblSubtitle;
-        private Label lblUsername;
-        private TextBox txtUsername;
-        private Label lblPassword;
-        private TextBox txtPassword;
-        private CheckBox chkShowPassword;
-        private Button btnLogin;
-        private Button btnExit;
-        private Label lblStatus;
-        private Label lblLockRemaining;
+        #endregion
+
+        private Label label1;
+        private Button button1;
+        private TextBox txtusn;
+        private Label label2;
+        private TextBox txtpw;
     }
 }

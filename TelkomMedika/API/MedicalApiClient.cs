@@ -8,7 +8,7 @@ using Tubes_KPL_Kelompok_1.src.Utils;
 
 namespace Tubes_KPL_Kelompok_1.src.API
 {
-    internal class MedicalApiClient
+    public class MedicalApiClient
     {
         private readonly List<MedicalHistory> histories = new List<MedicalHistory>();
         private readonly List<PatientCard> patientCards = new List<PatientCard>();

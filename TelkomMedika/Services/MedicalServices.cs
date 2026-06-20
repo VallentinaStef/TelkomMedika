@@ -9,7 +9,7 @@ using Tubes_KPL_Kelompok_1.src.Utils;
 
 namespace Tubes_KPL_Kelompok_1.src.Services
 {
-    internal class MedicalServices
+    public class MedicalServices
     {
         private MedicalApiClient api;
 
