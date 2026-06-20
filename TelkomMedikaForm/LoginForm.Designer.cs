@@ -25,6 +25,7 @@
             btnLogin = new Button();
             btnExit = new Button();
             lblStatus = new Label();
+            lblLockRemaining = new Label();
             SuspendLayout();
             // 
             // lblTitle
@@ -139,6 +140,17 @@
             lblStatus.TabIndex = 9;
             lblStatus.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // lblLockRemaining
+            // 
+            lblLockRemaining.AutoSize = true;
+            lblLockRemaining.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblLockRemaining.ForeColor = Color.Red;
+            lblLockRemaining.Location = new Point(250, 355);
+            lblLockRemaining.Name = "lblLockRemaining";
+            lblLockRemaining.Size = new Size(0, 20);
+            lblLockRemaining.TabIndex = 10;
+            lblLockRemaining.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -147,6 +159,7 @@
             ClientSize = new Size(800, 520);
             Controls.Add(lblTitle);
             Controls.Add(lblStatus);
+            Controls.Add(lblLockRemaining);
             Controls.Add(btnExit);
             Controls.Add(btnLogin);
             Controls.Add(chkShowPassword);
@@ -172,5 +185,6 @@
         private Button btnLogin;
         private Button btnExit;
         private Label lblStatus;
+        private Label lblLockRemaining;
     }
 }

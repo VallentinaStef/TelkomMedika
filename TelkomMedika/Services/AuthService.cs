@@ -101,6 +101,7 @@ namespace TelkomMedika.Services
 
             // wrong credentials
             info.Attempts++;
+            int remainingAttempts = MAX_ATTEMPTS - info.Attempts;
 
             if (info.Attempts >= MAX_ATTEMPTS)
             {
@@ -108,7 +109,7 @@ namespace TelkomMedika.Services
                 return new Response<User> { Status = false, Message = $"Akun terkunci. Coba lagi dalam {LOCK_DURATION.TotalMinutes} menit." };
             }
 
-            return new Response<User> { Status = false, Message = $"Login gagal! Percobaan ke-{info.Attempts}" };
+            return new Response<User> { Status = false, Message = $"Login gagal! Sisa percobaan: {remainingAttempts}" };
         }
 
         public Response<string> Logout()
