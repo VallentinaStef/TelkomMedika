@@ -112,6 +112,11 @@ namespace TelkomMedikaForm
                     unlockForm.ShowDialog();
                     break;
 
+                case "pengingatobat":
+                    var obatForm = new ObatForm();
+                    obatForm.ShowDialog();
+                    break;
+
                 default:
                     string featureName = btn.Text;
                     MessageBox.Show(

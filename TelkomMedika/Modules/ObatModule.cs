@@ -8,10 +8,23 @@ namespace Tubes_KPL_Kelompok_1.Modules
     public class ObatModule
     {
         private List<Obat> tabelJadwal = new List<Obat>();
+        public List<Obat> DaftarJadwal => tabelJadwal;
+
+        public ObatModule()
+        {
+            TambahJadwal("Paracetamol", "08:00", "500 mg");
+            TambahJadwal("Vitamin C", "18:00", "250 mg");
+        }
 
         public void TambahJadwal(string nama, string waktu, string dosis)
         {
             tabelJadwal.Add(new Obat { Nama = nama, Waktu = waktu, Dosis = dosis });
+        }
+
+        public void HapusJadwal(int index)
+        {
+            if (index >= 0 && index < tabelJadwal.Count)
+                tabelJadwal.RemoveAt(index);
         }
 
         public void TampilkanJadwal()
@@ -47,10 +60,9 @@ namespace Tubes_KPL_Kelompok_1.Modules
                 }
                 else if (waktuObat > jamSekarang)
                 {
-                    // Jika jam sekarang belum lewat waktu obat (masih ada waktu tersisa)
                     TimeSpan selisih = waktuObat - jamSekarang;
 
-                    Console.WriteLine($"\nKamu harus minum obat {item.Nama}, {selisih.TotalHours} jam lagi.");
+                    Console.WriteLine($"\nKamu harus minum obat {item.Nama}, {FormatSelisih(selisih)} lagi.");
                 }
             }
 
@@ -59,6 +71,17 @@ namespace Tubes_KPL_Kelompok_1.Modules
                 // Jika jam sekarang telah lewat semua waktu obat (tidak ada waktu tersisa)
                 Console.WriteLine("\nSemua jadwal obat untuk hari ini sudah lewat.");
             }
+        }
+
+        private string FormatSelisih(TimeSpan selisih)
+        {
+            if (selisih.TotalHours < 1)
+                return $"{selisih.Minutes} menit";
+
+            if (selisih.Minutes == 0)
+                return $"{selisih.Hours} jam";
+
+            return $"{selisih.Hours} jam {selisih.Minutes} menit";
         }
     }
 }
