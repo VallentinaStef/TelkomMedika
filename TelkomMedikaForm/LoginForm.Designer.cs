@@ -25,13 +25,14 @@
             btnLogin = new Button();
             btnExit = new Button();
             lblStatus = new Label();
+            lblLockRemaining = new Label();
             SuspendLayout();
             // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            lblTitle.ForeColor = Color.Teal;
+            lblTitle.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
             lblTitle.Location = new Point(300, 40);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(200, 46);
@@ -42,7 +43,7 @@
             // 
             lblSubtitle.AutoSize = true;
             lblSubtitle.Font = new Font("Segoe UI", 11F);
-            lblSubtitle.ForeColor = Color.DimGray;
+            lblSubtitle.ForeColor = Color.FromArgb(0x33, 0x33, 0x33);
             lblSubtitle.Location = new Point(195, 100);
             lblSubtitle.Name = "lblSubtitle";
             lblSubtitle.Size = new Size(410, 25);
@@ -67,6 +68,7 @@
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(300, 30);
             txtUsername.TabIndex = 3;
+            txtUsername.TextChanged += txtUsername_TextChanged;
             // 
             // lblPassword
             // 
@@ -101,7 +103,7 @@
             // 
             // btnLogin
             // 
-            btnLogin.BackColor = Color.Teal;
+            btnLogin.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
             btnLogin.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnLogin.ForeColor = Color.White;
             btnLogin.Location = new Point(310, 365);
@@ -114,9 +116,12 @@
             // 
             // btnExit
             // 
-            btnExit.BackColor = Color.IndianRed;
+            btnExit.BackColor = Color.White;
+            btnExit.FlatStyle = FlatStyle.Flat;
+            btnExit.FlatAppearance.BorderColor = Color.FromArgb(0x8E, 0x00, 0x00);
+            btnExit.FlatAppearance.BorderSize = 2;
             btnExit.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnExit.ForeColor = Color.White;
+            btnExit.ForeColor = Color.FromArgb(0x8E, 0x00, 0x00);
             btnExit.Location = new Point(310, 415);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(180, 40);
@@ -136,12 +141,26 @@
             lblStatus.TabIndex = 9;
             lblStatus.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // lblLockRemaining
+            // 
+            lblLockRemaining.AutoSize = true;
+            lblLockRemaining.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblLockRemaining.ForeColor = Color.Red;
+            lblLockRemaining.Location = new Point(250, 355);
+            lblLockRemaining.Name = "lblLockRemaining";
+            lblLockRemaining.Size = new Size(0, 20);
+            lblLockRemaining.TabIndex = 10;
+            lblLockRemaining.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(800, 520);
+            Controls.Add(lblTitle);
             Controls.Add(lblStatus);
+            Controls.Add(lblLockRemaining);
             Controls.Add(btnExit);
             Controls.Add(btnLogin);
             Controls.Add(chkShowPassword);
@@ -150,7 +169,6 @@
             Controls.Add(txtUsername);
             Controls.Add(lblUsername);
             Controls.Add(lblSubtitle);
-            Controls.Add(lblTitle);
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TelkomMedika - Login";
@@ -168,5 +186,6 @@
         private Button btnLogin;
         private Button btnExit;
         private Label lblStatus;
+        private Label lblLockRemaining;
     }
 }

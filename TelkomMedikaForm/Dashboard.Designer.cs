@@ -27,10 +27,10 @@
             // 
             // panelSidebar
             // 
-            panelSidebar.BackColor = Color.Teal;
+            panelSidebar.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
             panelSidebar.Dock = DockStyle.Left;
             panelSidebar.Name = "panelSidebar";
-            panelSidebar.Size = new Size(220, 500);
+            panelSidebar.Size = new Size(300, 500);
             panelSidebar.TabIndex = 0;
             // 
             // panelContent
@@ -57,7 +57,7 @@
             // 
             // panelHeader
             // 
-            panelHeader.BackColor = Color.DarkSlateGray;
+            panelHeader.BackColor = Color.FromArgb(0xB7, 0x1C, 0x1C);
             panelHeader.Controls.Add(lblAppTitle);
             panelHeader.Dock = DockStyle.Top;
             panelHeader.Location = new Point(0, 0);
@@ -69,7 +69,7 @@
             // 
             lblWelcome.AutoSize = true;
             lblWelcome.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            lblWelcome.ForeColor = Color.Teal;
+            lblWelcome.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
             lblWelcome.Location = new Point(150, 160);
             lblWelcome.Name = "lblWelcome";
             lblWelcome.Size = new Size(0, 37);
@@ -80,7 +80,7 @@
             // 
             lblRoleDisplay.AutoSize = true;
             lblRoleDisplay.Font = new Font("Segoe UI", 12F);
-            lblRoleDisplay.ForeColor = Color.DimGray;
+            lblRoleDisplay.ForeColor = Color.FromArgb(0x33, 0x33, 0x33);
             lblRoleDisplay.Location = new Point(150, 210);
             lblRoleDisplay.Name = "lblRoleDisplay";
             lblRoleDisplay.Size = new Size(0, 28);
