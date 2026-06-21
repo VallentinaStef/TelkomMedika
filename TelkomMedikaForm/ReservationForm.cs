@@ -126,6 +126,7 @@ namespace TelkomMedikaForm
             var reservation = new Reservation
             {
                 PatientName = string.IsNullOrWhiteSpace(UserSession.Name) ? "Pasien" : UserSession.Name,
+                PatientId = UserSession.PatientId,
                 PatientUsername = UserSession.Username,
                 DoctorName = dokter,
                 Poli = poli,

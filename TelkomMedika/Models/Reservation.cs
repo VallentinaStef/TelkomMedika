@@ -12,6 +12,8 @@ namespace Tubes_KPL_Kelompok_1.src.Models
 
         public string PatientName { get; set; }
 
+        public int PatientId { get; set; }
+
         public string PatientUsername { get; set; }
 
         public string DoctorName { get; set; }

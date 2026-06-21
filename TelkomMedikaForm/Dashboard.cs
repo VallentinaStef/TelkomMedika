@@ -57,7 +57,9 @@ namespace TelkomMedikaForm
                 ["Admin"] = new()
                 {
                     ("Profil", "profil"),
-                    ("Data Pasien", "datapasien"),
+                    ("Kartu Pasien", "kartupasien"),
+                    ("Riwayat Layanan", "riwayatlayanan"),
+                    ("Rekam Medis", "rekammedis"),
                     ("Reservasi", "reservasi"),
                     ("Kelola Reservasi", "kelolareservasi"),
                     ("Jadwal Dokter", "jadwaldokter"),
@@ -68,6 +70,8 @@ namespace TelkomMedikaForm
                 ["Dokter"] = new()
                 {
                     ("Profil", "profil"),
+                    ("Kartu Pasien", "kartupasien"),
+                    ("Riwayat Layanan Pasien", "riwayatlayanan"),
                     ("Rekam Medis Pasien", "rekammedis"),
                     ("Reservasi Disetujui", "reservasidisetujui"),
                     ("Jadwal Dokter", "jadwaldokter"),
@@ -76,7 +80,9 @@ namespace TelkomMedikaForm
                 ["Pasien"] = new()
                 {
                     ("Profil", "profil"),
-                    ("Rekam Medis dan Riwayat", "rekammedisriwayat"),
+                    ("Kartu Pasien", "kartupasien"),
+                    ("Riwayat Layanan", "riwayatlayanan"),
+                    ("Rekam Medis", "rekammedis"),
                     ("Reservasi", "reservasi"),
                     ("Jadwal Dokter", "jadwaldokter"),
                     ("Notifikasi dan Konsultasi", "notifikasi"),
@@ -141,9 +147,19 @@ namespace TelkomMedikaForm
                     approvedReservationForm.ShowDialog();
                     break;
 
-                case "rekammedisriwayat":
-                    var reservationHistoryForm = new ReservationHistoryForm();
-                    reservationHistoryForm.ShowDialog();
+                case "kartupasien":
+                    var patientCardForm = new PatientCardForm();
+                    patientCardForm.ShowDialog();
+                    break;
+
+                case "riwayatlayanan":
+                    var medicalHistoryForm = new MedicalHistoryForm();
+                    medicalHistoryForm.ShowDialog();
+                    break;
+
+                case "rekammedis":
+                    var medicalRecordForm = new MedicalRecordForm();
+                    medicalRecordForm.ShowDialog();
                     break;
 
                 default:

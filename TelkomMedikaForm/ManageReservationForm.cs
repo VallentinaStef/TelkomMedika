@@ -7,15 +7,17 @@ namespace TelkomMedikaForm
     public partial class ManageReservationForm : Form
     {
         private readonly ReservationService _reservationService;
+        private readonly MedicalServices _medicalServices;
         private List<Reservation> _reservations = new();
 
         public ManageReservationForm()
         {
             InitializeComponent();
             _reservationService = new ReservationService(new ReservationApiClient());
-            cmbStatus.Items.AddRange(new object[] { "Pending", "Disetujui", "Ditolak" });
+            _medicalServices = new MedicalServices(new MedicalApiClient());
+            cmbStatus.Items.AddRange(new object[] { "Pending", "Disetujui", "Ditolak", "Selesai" });
             cmbStatus.SelectedIndex = 0;
-            cmbFilterStatus.Items.AddRange(new object[] { "Semua", "Pending", "Disetujui", "Ditolak" });
+            cmbFilterStatus.Items.AddRange(new object[] { "Semua", "Pending", "Disetujui", "Ditolak", "Selesai" });
             cmbFilterStatus.SelectedIndex = 0;
             cmbFilterPoli.Items.AddRange(new object[] { "Semua", "umum", "gigi" });
             cmbFilterPoli.SelectedIndex = 0;
@@ -92,6 +94,13 @@ namespace TelkomMedikaForm
             }
 
             string result = _reservationService.UpdateReservationStatus(_reservations[index].Id, status, reason);
+
+            if (result.Contains("berhasil", StringComparison.OrdinalIgnoreCase) && status == ReservationStatus.Completed)
+            {
+                string historyResult = AddReservationToMedicalHistory(_reservations[index]);
+                if (!string.IsNullOrWhiteSpace(historyResult))
+                    result = $"{result}\n{historyResult}";
+            }
 
             MessageBox.Show(result, "Kelola Reservasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LoadReservations();
@@ -173,7 +182,56 @@ namespace TelkomMedikaForm
             {
                 "Disetujui" => ReservationStatus.Approved,
                 "Ditolak" => ReservationStatus.Rejected,
+                "Selesai" => ReservationStatus.Completed,
                 _ => ReservationStatus.Pending
+            };
+        }
+
+        private string AddReservationToMedicalHistory(Reservation reservation)
+        {
+            int patientId = GetReservationPatientId(reservation);
+            if (patientId <= 0)
+                return "Riwayat layanan tidak dibuat karena Patient ID reservasi tidak valid.";
+
+            string bookingNumber = string.IsNullOrWhiteSpace(reservation.BookingNumber)
+                ? $"ID-{reservation.Id}"
+                : reservation.BookingNumber;
+
+            string marker = $"Booking {bookingNumber}";
+            var existingHistories = _medicalServices.GetHistory(patientId);
+            if (existingHistories.Status && existingHistories.Data.Any(history =>
+                    history.Description.Contains(marker, StringComparison.OrdinalIgnoreCase)))
+            {
+                return "Riwayat layanan sudah pernah dibuat untuk reservasi ini.";
+            }
+
+            var history = new MedicalHistory
+            {
+                PatientId = patientId,
+                ServiceName = $"Konsultasi {reservation.Poli}",
+                DoctorName = reservation.DoctorName,
+                Description = $"{marker}. Keluhan: {reservation.Keluhan}",
+                ServiceDate = DateTime.Now
+            };
+
+            var response = _medicalServices.AddMedicalHistory(history);
+            return response.Status
+                ? "Riwayat layanan berhasil dibuat dari reservasi selesai."
+                : $"Riwayat layanan gagal dibuat: {response.Message}";
+        }
+
+        private static int GetReservationPatientId(Reservation reservation)
+        {
+            if (reservation.PatientId > 0)
+                return reservation.PatientId;
+
+            return reservation.PatientUsername?.ToLowerInvariant() switch
+            {
+                "pasien" => 1,
+                "pasien1" => 1,
+                "pasien2" => 2,
+                "pasien3" => 3,
+                _ => 0
             };
         }
 

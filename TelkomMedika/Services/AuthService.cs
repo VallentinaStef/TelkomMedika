@@ -21,6 +21,23 @@ namespace TelkomMedika.Services
             public DateTime? LockUntil;
         }
 
+        private class PatientAccount
+        {
+            public string Username { get; set; } = string.Empty;
+            public string Name { get; set; } = string.Empty;
+            public int PatientId { get; set; }
+            public string Phone { get; set; } = string.Empty;
+            public string Address { get; set; } = string.Empty;
+        }
+
+        private static readonly List<PatientAccount> PatientAccounts = new()
+        {
+            new PatientAccount { Username = "pasien", Name = "Andi Pratama", PatientId = 1, Phone = "08123456789", Address = "Jl. Merdeka No. 10, Bandung" },
+            new PatientAccount { Username = "pasien1", Name = "Andi Pratama", PatientId = 1, Phone = "08123456789", Address = "Jl. Merdeka No. 10, Bandung" },
+            new PatientAccount { Username = "pasien2", Name = "Siti Rahma", PatientId = 2, Phone = "08129876543", Address = "Jl. Telekomunikasi No. 5, Bandung" },
+            new PatientAccount { Username = "pasien3", Name = "Raka Wijaya", PatientId = 3, Phone = "08127654321", Address = "Jl. Dipatiukur No. 21, Bandung" }
+        };
+
         private readonly System.Collections.Concurrent.ConcurrentDictionary<string, LoginInfo> _loginMap = new();
 
         private const int MAX_ATTEMPTS = 3;
@@ -38,7 +55,7 @@ namespace TelkomMedika.Services
                 return new Response<User> { Status = false, Message = "Password wajib diisi!" };
             }
 
-            if (username != "admin" && username != "dokter" && username != "pasien")
+            if (!IsUserRegistered(username))
             {
                 return new Response<User> { Status = false, Message = "Username tidak terdaftar!" };
             }
@@ -85,18 +102,12 @@ namespace TelkomMedika.Services
                 return new Response<User> { Status = true, Data = CurrentUser, Message = "Login berhasil sebagai Dokter!" };
             }
 
-            if (username == "pasien" && password == "123")
+            var patientAccount = PatientAccounts.FirstOrDefault(patient =>
+                patient.Username.Equals(username, StringComparison.OrdinalIgnoreCase));
+
+            if (patientAccount != null && password == "123")
             {
-                State = AuthState.LoggedIn;
-                _loginMap.TryRemove(username, out _);
-
-                CurrentUser = new User { Username = username, Name = "Andi", Role = "Pasien" };
-                UserSession.Username = username;
-                UserSession.Name = "Andi";
-                UserSession.Role = "Pasien";
-                ProfileService<PasienProfile>.Seed(username, new PasienProfile { Username = username, Name = "Andi", Role = "Pasien", NoTelp = "08123456789", Alamat = "Jl. Kesehatan No. 1" });
-
-                return new Response<User> { Status = true, Data = CurrentUser, Message = "Login berhasil sebagai Pasien!" };
+                return LoginPatient(patientAccount);
             }
 
             // wrong credentials
@@ -149,12 +160,44 @@ namespace TelkomMedika.Services
 
         public List<string> GetRegisteredUsers()
         {
-            return new List<string> { "admin", "dokter", "pasien" };
+            var users = new List<string> { "admin", "dokter" };
+            users.AddRange(PatientAccounts.Select(patient => patient.Username));
+            return users;
         }
 
         public bool IsUserRegistered(string username)
         {
             return GetRegisteredUsers().Contains(username, StringComparer.OrdinalIgnoreCase);
+        }
+
+        private Response<User> LoginPatient(PatientAccount patient)
+        {
+            State = AuthState.LoggedIn;
+            _loginMap.TryRemove(patient.Username, out _);
+
+            CurrentUser = new User
+            {
+                Username = patient.Username,
+                Name = patient.Name,
+                Role = "Pasien",
+                PatientId = patient.PatientId
+            };
+
+            UserSession.Username = patient.Username;
+            UserSession.Name = patient.Name;
+            UserSession.Role = "Pasien";
+            UserSession.PatientId = patient.PatientId;
+
+            ProfileService<PasienProfile>.Seed(patient.Username, new PasienProfile
+            {
+                Username = patient.Username,
+                Name = patient.Name,
+                Role = "Pasien",
+                NoTelp = patient.Phone,
+                Alamat = patient.Address
+            });
+
+            return new Response<User> { Status = true, Data = CurrentUser, Message = $"Login berhasil sebagai Pasien {patient.Name}!" };
         }
 
         public List<string> GetLockedUsers()
