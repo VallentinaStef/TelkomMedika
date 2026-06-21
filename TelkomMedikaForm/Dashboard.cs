@@ -58,7 +58,9 @@ namespace TelkomMedikaForm
                 {
                     ("Profil", "profil"),
                     ("Data Pasien", "datapasien"),
-                    ("Reservasi dan Jadwal", "reservasijadwal"),
+                    ("Reservasi", "reservasi"),
+                    ("Kelola Reservasi", "kelolareservasi"),
+                    ("Jadwal Dokter", "jadwaldokter"),
                     ("Notifikasi dan Konsultasi", "notifikasi"),
                     ("Unlock User", "unlock"),
                     ("Logout", "logout")
@@ -67,14 +69,16 @@ namespace TelkomMedikaForm
                 {
                     ("Profil", "profil"),
                     ("Rekam Medis Pasien", "rekammedis"),
-                    ("Jadwal dan Reservasi", "jadwalreservasi"),
+                    ("Reservasi Disetujui", "reservasidisetujui"),
+                    ("Jadwal Dokter", "jadwaldokter"),
                     ("Logout", "logout")
                 },
                 ["Pasien"] = new()
                 {
                     ("Profil", "profil"),
                     ("Rekam Medis dan Riwayat", "rekammedisriwayat"),
-                    ("Reservasi dan Jadwal", "reservasijadwal"),
+                    ("Reservasi", "reservasi"),
+                    ("Jadwal Dokter", "jadwaldokter"),
                     ("Notifikasi dan Konsultasi", "notifikasi"),
                     ("Pengingat Obat", "pengingatobat"),
                     ("Logout", "logout")
@@ -115,6 +119,31 @@ namespace TelkomMedikaForm
                 case "pengingatobat":
                     var obatForm = new ObatForm();
                     obatForm.ShowDialog();
+                    break;
+
+                case "reservasi":
+                    var reservationForm = new ReservationForm();
+                    reservationForm.ShowDialog();
+                    break;
+
+                case "jadwaldokter":
+                    var doctorScheduleForm = new DoctorScheduleForm();
+                    doctorScheduleForm.ShowDialog();
+                    break;
+
+                case "kelolareservasi":
+                    var manageReservationForm = new ManageReservationForm();
+                    manageReservationForm.ShowDialog();
+                    break;
+
+                case "reservasidisetujui":
+                    var approvedReservationForm = new ApprovedReservationForm();
+                    approvedReservationForm.ShowDialog();
+                    break;
+
+                case "rekammedisriwayat":
+                    var reservationHistoryForm = new ReservationHistoryForm();
+                    reservationHistoryForm.ShowDialog();
                     break;
 
                 default:

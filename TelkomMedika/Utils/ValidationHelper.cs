@@ -56,11 +56,15 @@ namespace Tubes_KPL_Kelompok_1.src.Utils
                 && !string.IsNullOrWhiteSpace(
                     reservation.PatientName)
                 && !string.IsNullOrWhiteSpace(
+                    reservation.PatientUsername)
+                && !string.IsNullOrWhiteSpace(
                     reservation.DoctorName)
                 && !string.IsNullOrWhiteSpace(
                     reservation.Day)
                 && !string.IsNullOrWhiteSpace(
-                    reservation.Time);
+                    reservation.Time)
+                && !string.IsNullOrWhiteSpace(
+                    reservation.AppointmentTime);
         }
     }
 }

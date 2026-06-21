@@ -70,7 +70,9 @@ namespace Tubes_KPL_Kelompok_1.src.Services
                 return "Data reservasi tidak lengkap!";
             }
 
-            reservation.Status = ReservationStatus.Pending.ToString();
+            if (string.IsNullOrWhiteSpace(reservation.Status))
+                reservation.Status = ReservationStatus.Pending.ToString();
+
             reservation.ReservationDate = DateTime.Now;
 
             return api.AddReservation(reservation);
@@ -91,6 +93,16 @@ namespace Tubes_KPL_Kelompok_1.src.Services
         public string CancelReservation(int id)
         {
             return api.CancelReservation(id);
+        }
+
+        public string UpdateReservationStatus(int id, ReservationStatus status)
+        {
+            return api.UpdateReservationStatus(id, status);
+        }
+
+        public string UpdateReservationStatus(int id, ReservationStatus status, string rejectionReason)
+        {
+            return api.UpdateReservationStatus(id, status, rejectionReason);
         }
     }
 }

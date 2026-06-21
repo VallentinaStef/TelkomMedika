@@ -10,6 +10,8 @@ namespace Tubes_KPL_Kelompok_1.src.Models
     {
         public string DoctorName { get; set; }
 
+        public string Poli { get; set; }
+
         public string Day { get; set; }
 
         public string Time { get; set; }

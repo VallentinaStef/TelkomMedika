@@ -12,11 +12,23 @@ namespace Tubes_KPL_Kelompok_1.src.Models
 
         public string PatientName { get; set; }
 
+        public string PatientUsername { get; set; }
+
         public string DoctorName { get; set; }
+
+        public string Poli { get; set; }
 
         public string Day { get; set; }
 
+        public DateTime AppointmentDate { get; set; }
+
         public string Time { get; set; }
+
+        public string AppointmentTime { get; set; }
+
+        public string Keluhan { get; set; }
+
+        public string RejectionReason { get; set; }
 
         public string BookingNumber { get; set; }
 
