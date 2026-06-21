@@ -10,6 +10,8 @@ namespace Tubes_KPL_Kelompok_1.src.Models
     { 
         Pending,
         Approved,
+        Rejected,
+        Completed,
         Cancelled
     }
 }
