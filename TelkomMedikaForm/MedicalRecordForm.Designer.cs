@@ -53,7 +53,7 @@ namespace TelkomMedikaForm
             // 
             // pnlHeader
             // 
-            pnlHeader.BackColor = Color.FromArgb(0, 112, 192);
+            pnlHeader.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
             pnlHeader.Controls.Add(lblSubtitle);
             pnlHeader.Controls.Add(lblTitle);
             pnlHeader.Dock = DockStyle.Top;
@@ -101,7 +101,7 @@ namespace TelkomMedikaForm
             btnRefresh.BackColor = Color.White;
             btnRefresh.FlatStyle = FlatStyle.Flat;
             btnRefresh.Font = new Font("Segoe UI", 9F);
-            btnRefresh.ForeColor = Color.FromArgb(0, 112, 192);
+            btnRefresh.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
             btnRefresh.Location = new Point(784, 19);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(120, 32);
@@ -112,7 +112,7 @@ namespace TelkomMedikaForm
             // 
             // btnSearch
             // 
-            btnSearch.BackColor = Color.FromArgb(0, 112, 192);
+            btnSearch.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnSearch.ForeColor = Color.White;
@@ -156,6 +156,7 @@ namespace TelkomMedikaForm
             dgvMedicalRecords.MultiSelect = false;
             dgvMedicalRecords.Name = "dgvMedicalRecords";
             dgvMedicalRecords.ReadOnly = true;
+            dgvMedicalRecords.RowHeadersVisible = false;
             dgvMedicalRecords.RowHeadersWidth = 51;
             dgvMedicalRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvMedicalRecords.Size = new Size(932, 190);
@@ -201,7 +202,7 @@ namespace TelkomMedikaForm
             // 
             lblMedicineCaption.AutoSize = true;
             lblMedicineCaption.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblMedicineCaption.ForeColor = Color.FromArgb(0, 112, 192);
+            lblMedicineCaption.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
             lblMedicineCaption.Location = new Point(638, 115);
             lblMedicineCaption.Name = "lblMedicineCaption";
             lblMedicineCaption.Size = new Size(43, 20);
@@ -224,7 +225,7 @@ namespace TelkomMedikaForm
             // 
             lblDiagnosisCaption.AutoSize = true;
             lblDiagnosisCaption.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblDiagnosisCaption.ForeColor = Color.FromArgb(0, 112, 192);
+            lblDiagnosisCaption.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
             lblDiagnosisCaption.Location = new Point(332, 115);
             lblDiagnosisCaption.Name = "lblDiagnosisCaption";
             lblDiagnosisCaption.Size = new Size(77, 20);
@@ -247,7 +248,7 @@ namespace TelkomMedikaForm
             // 
             lblComplaintCaption.AutoSize = true;
             lblComplaintCaption.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblComplaintCaption.ForeColor = Color.FromArgb(0, 112, 192);
+            lblComplaintCaption.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
             lblComplaintCaption.Location = new Point(26, 115);
             lblComplaintCaption.Name = "lblComplaintCaption";
             lblComplaintCaption.Size = new Size(66, 20);
@@ -346,7 +347,7 @@ namespace TelkomMedikaForm
             // 
             lblDetailTitle.AutoSize = true;
             lblDetailTitle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblDetailTitle.ForeColor = Color.FromArgb(0, 112, 192);
+            lblDetailTitle.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
             lblDetailTitle.Location = new Point(22, 16);
             lblDetailTitle.Name = "lblDetailTitle";
             lblDetailTitle.Size = new Size(118, 28);

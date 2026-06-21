@@ -36,7 +36,7 @@ namespace TelkomMedikaForm
             // 
             // pnlHeader
             // 
-            pnlHeader.BackColor = Color.FromArgb(0, 112, 192);
+            pnlHeader.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
             pnlHeader.Controls.Add(lblSubtitle);
             pnlHeader.Controls.Add(lblTitle);
             pnlHeader.Dock = DockStyle.Top;
@@ -88,7 +88,7 @@ namespace TelkomMedikaForm
             btnRefresh.BackColor = Color.White;
             btnRefresh.FlatStyle = FlatStyle.Flat;
             btnRefresh.Font = new Font("Segoe UI", 9F);
-            btnRefresh.ForeColor = Color.FromArgb(0, 112, 192);
+            btnRefresh.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
             btnRefresh.Location = new Point(588, 19);
             btnRefresh.Margin = new Padding(2);
             btnRefresh.Name = "btnRefresh";
@@ -100,7 +100,7 @@ namespace TelkomMedikaForm
             // 
             // btnSearch
             // 
-            btnSearch.BackColor = Color.FromArgb(0, 112, 192);
+            btnSearch.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnSearch.ForeColor = Color.White;
@@ -148,6 +148,7 @@ namespace TelkomMedikaForm
             dgvMedicalHistory.MultiSelect = false;
             dgvMedicalHistory.Name = "dgvMedicalHistory";
             dgvMedicalHistory.ReadOnly = true;
+            dgvMedicalHistory.RowHeadersVisible = false;
             dgvMedicalHistory.RowHeadersWidth = 62;
             dgvMedicalHistory.RowTemplate.Height = 33;
             dgvMedicalHistory.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

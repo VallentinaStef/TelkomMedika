@@ -48,7 +48,7 @@ namespace TelkomMedikaForm
             // 
             // pnlHeader
             // 
-            pnlHeader.BackColor = Color.FromArgb(0, 112, 192);
+            pnlHeader.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
             pnlHeader.Controls.Add(lblSubtitle);
             pnlHeader.Controls.Add(lblTitle);
             pnlHeader.Dock = DockStyle.Top;
@@ -96,7 +96,7 @@ namespace TelkomMedikaForm
             btnRefresh.BackColor = Color.White;
             btnRefresh.FlatStyle = FlatStyle.Flat;
             btnRefresh.Font = new Font("Segoe UI", 9F);
-            btnRefresh.ForeColor = Color.FromArgb(0, 112, 192);
+            btnRefresh.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
             btnRefresh.Location = new Point(588, 19);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(120, 32);
@@ -107,7 +107,7 @@ namespace TelkomMedikaForm
             // 
             // btnSearch
             // 
-            btnSearch.BackColor = Color.FromArgb(0, 112, 192);
+            btnSearch.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnSearch.ForeColor = Color.White;
@@ -273,7 +273,7 @@ namespace TelkomMedikaForm
             lblCardBadge.AutoSize = true;
             lblCardBadge.BackColor = Color.FromArgb(232, 244, 255);
             lblCardBadge.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            lblCardBadge.ForeColor = Color.FromArgb(0, 112, 192);
+            lblCardBadge.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
             lblCardBadge.Location = new Point(356, 16);
             lblCardBadge.Name = "lblCardBadge";
             lblCardBadge.Size = new Size(104, 19);
@@ -284,7 +284,7 @@ namespace TelkomMedikaForm
             // 
             lblCardTitle.AutoSize = true;
             lblCardTitle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblCardTitle.ForeColor = Color.FromArgb(0, 112, 192);
+            lblCardTitle.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
             lblCardTitle.Location = new Point(22, 16);
             lblCardTitle.Name = "lblCardTitle";
             lblCardTitle.Size = new Size(185, 28);

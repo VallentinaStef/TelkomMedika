@@ -1,0 +1,6 @@
+@TelkomMedika.Api_HostAddress = http://localhost:5287
+
+GET {{TelkomMedika.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
