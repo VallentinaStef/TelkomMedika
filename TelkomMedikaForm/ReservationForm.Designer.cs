@@ -14,6 +14,8 @@ namespace TelkomMedikaForm
         private DateTimePicker dtpTanggal;
         private Label lblJadwal;
         private ComboBox cmbJadwal;
+        private Label lblJamReservasi;
+        private ComboBox cmbJamReservasi;
         private Label lblKeluhan;
         private TextBox txtKeluhan;
         private Button btnKembali;
@@ -39,6 +41,8 @@ namespace TelkomMedikaForm
             dtpTanggal = new DateTimePicker();
             lblJadwal = new Label();
             cmbJadwal = new ComboBox();
+            lblJamReservasi = new Label();
+            cmbJamReservasi = new ComboBox();
             lblKeluhan = new Label();
             txtKeluhan = new TextBox();
             btnKembali = new Button();
@@ -60,6 +64,8 @@ namespace TelkomMedikaForm
             panelCard.Controls.Add(dtpTanggal);
             panelCard.Controls.Add(lblJadwal);
             panelCard.Controls.Add(cmbJadwal);
+            panelCard.Controls.Add(lblJamReservasi);
+            panelCard.Controls.Add(cmbJamReservasi);
             panelCard.Controls.Add(lblKeluhan);
             panelCard.Controls.Add(txtKeluhan);
             panelCard.Controls.Add(btnKembali);
@@ -67,7 +73,7 @@ namespace TelkomMedikaForm
             panelCard.Location = new Point(24, 24);
             panelCard.Name = "panelCard";
             panelCard.Padding = new Padding(20);
-            panelCard.Size = new Size(616, 604);
+            panelCard.Size = new Size(616, 684);
             panelCard.TabIndex = 0;
             // 
             // lblTitle
@@ -179,26 +185,47 @@ namespace TelkomMedikaForm
             cmbJadwal.Name = "cmbJadwal";
             cmbJadwal.Size = new Size(536, 33);
             cmbJadwal.TabIndex = 9;
+            cmbJadwal.SelectedIndexChanged += cmbJadwal_SelectedIndexChanged;
+            // 
+            // lblJamReservasi
+            // 
+            lblJamReservasi.AutoSize = true;
+            lblJamReservasi.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblJamReservasi.Location = new Point(35, 469);
+            lblJamReservasi.Name = "lblJamReservasi";
+            lblJamReservasi.Size = new Size(154, 23);
+            lblJamReservasi.TabIndex = 10;
+            lblJamReservasi.Text = "pilih jam reservasi";
+            // 
+            // cmbJamReservasi
+            // 
+            cmbJamReservasi.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbJamReservasi.Font = new Font("Segoe UI", 11F);
+            cmbJamReservasi.FormattingEnabled = true;
+            cmbJamReservasi.Location = new Point(35, 496);
+            cmbJamReservasi.Name = "cmbJamReservasi";
+            cmbJamReservasi.Size = new Size(536, 33);
+            cmbJamReservasi.TabIndex = 11;
             // 
             // lblKeluhan
             // 
             lblKeluhan.AutoSize = true;
             lblKeluhan.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblKeluhan.Location = new Point(35, 469);
+            lblKeluhan.Location = new Point(35, 549);
             lblKeluhan.Name = "lblKeluhan";
             lblKeluhan.Size = new Size(72, 23);
-            lblKeluhan.TabIndex = 10;
+            lblKeluhan.TabIndex = 12;
             lblKeluhan.Text = "keluhan";
             // 
             // txtKeluhan
             // 
             txtKeluhan.Font = new Font("Segoe UI", 11F);
-            txtKeluhan.Location = new Point(35, 496);
+            txtKeluhan.Location = new Point(35, 576);
             txtKeluhan.Multiline = true;
             txtKeluhan.Name = "txtKeluhan";
             txtKeluhan.ScrollBars = ScrollBars.Vertical;
             txtKeluhan.Size = new Size(536, 55);
-            txtKeluhan.TabIndex = 11;
+            txtKeluhan.TabIndex = 13;
             // 
             // btnKembali
             // 
@@ -206,10 +233,10 @@ namespace TelkomMedikaForm
             btnKembali.FlatStyle = FlatStyle.Flat;
             btnKembali.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnKembali.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
-            btnKembali.Location = new Point(355, 563);
+            btnKembali.Location = new Point(355, 643);
             btnKembali.Name = "btnKembali";
             btnKembali.Size = new Size(100, 36);
-            btnKembali.TabIndex = 12;
+            btnKembali.TabIndex = 14;
             btnKembali.Text = "kembali";
             btnKembali.UseVisualStyleBackColor = false;
             btnKembali.Click += btnKembali_Click;
@@ -220,10 +247,10 @@ namespace TelkomMedikaForm
             btnSubmit.FlatStyle = FlatStyle.Flat;
             btnSubmit.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnSubmit.ForeColor = Color.White;
-            btnSubmit.Location = new Point(471, 563);
+            btnSubmit.Location = new Point(471, 643);
             btnSubmit.Name = "btnSubmit";
             btnSubmit.Size = new Size(100, 36);
-            btnSubmit.TabIndex = 13;
+            btnSubmit.TabIndex = 15;
             btnSubmit.Text = "submit";
             btnSubmit.UseVisualStyleBackColor = false;
             btnSubmit.Click += btnSubmit_Click;
@@ -233,7 +260,7 @@ namespace TelkomMedikaForm
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 245, 245);
-            ClientSize = new Size(664, 652);
+            ClientSize = new Size(664, 732);
             Controls.Add(panelCard);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;

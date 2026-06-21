@@ -133,6 +133,7 @@ namespace Tubes_KPL_Kelompok_1.src.API
                             existing.Poli.Equals(reservation.Poli, StringComparison.OrdinalIgnoreCase) &&
                             existing.AppointmentDate.Date == reservation.AppointmentDate.Date &&
                             existing.Time == reservation.Time &&
+                            existing.AppointmentTime == reservation.AppointmentTime &&
                             existing.Status != ReservationStatus.Rejected.ToString() &&
                             existing.Status != ReservationStatus.Cancelled.ToString());
 
@@ -143,7 +144,7 @@ namespace Tubes_KPL_Kelompok_1.src.API
                     bool patientAlreadyBooked = reservations.Any(existing =>
                         existing.PatientUsername == reservation.PatientUsername &&
                         existing.AppointmentDate.Date == reservation.AppointmentDate.Date &&
-                        existing.Time == reservation.Time &&
+                        existing.AppointmentTime == reservation.AppointmentTime &&
                         existing.Status != ReservationStatus.Rejected.ToString() &&
                         existing.Status != ReservationStatus.Cancelled.ToString());
 

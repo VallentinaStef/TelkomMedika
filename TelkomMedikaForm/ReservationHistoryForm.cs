@@ -34,6 +34,7 @@ namespace TelkomMedikaForm
                         ? reservation.Day
                         : reservation.AppointmentDate.ToString("dddd, dd MMMM yyyy"),
                     Jadwal = reservation.Time,
+                    Jam = reservation.AppointmentTime,
                     reservation.Keluhan,
                     Status = ToDisplayStatus(reservation.Status),
                     Alasan = reservation.RejectionReason
@@ -125,6 +126,7 @@ namespace TelkomMedikaForm
                 $"Dokter: {reservation.DoctorName}\n" +
                 $"Tanggal: {(reservation.AppointmentDate == DateTime.MinValue ? reservation.Day : reservation.AppointmentDate.ToString("dddd, dd MMMM yyyy"))}\n" +
                 $"Jadwal: {reservation.Time}\n" +
+                $"Jam reservasi: {reservation.AppointmentTime}\n" +
                 $"Keluhan: {reservation.Keluhan}\n" +
                 $"Status: {ToDisplayStatus(reservation.Status)}\n" +
                 $"Alasan penolakan: {reason}";
