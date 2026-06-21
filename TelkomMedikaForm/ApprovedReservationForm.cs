@@ -53,6 +53,7 @@ namespace TelkomMedikaForm
                         ? reservation.Day
                         : reservation.AppointmentDate.ToString("dddd, dd MMMM yyyy"),
                     Jadwal = reservation.Time,
+                    Jam = reservation.AppointmentTime,
                     reservation.Keluhan,
                     Status = "Disetujui"
                 })

@@ -45,6 +45,7 @@ namespace TelkomMedikaForm
                         ? reservation.Day
                         : reservation.AppointmentDate.ToString("dddd, dd MMMM yyyy"),
                     Jadwal = reservation.Time,
+                    Jam = reservation.AppointmentTime,
                     reservation.Keluhan,
                     Status = ToDisplayStatus(reservation.Status),
                     KuotaTersisa = GetRemainingQuota(reservation),
@@ -123,7 +124,7 @@ namespace TelkomMedikaForm
 
             var lines = new List<string>
             {
-                "Booking,Pasien,Poli,Dokter,Tanggal,Jadwal,Keluhan,Status,Alasan"
+                "Booking,Pasien,Poli,Dokter,Tanggal,Jadwal,JamReservasi,Keluhan,Status,Alasan"
             };
 
             lines.AddRange(_reservations.Select(reservation => string.Join(",", new[]
@@ -134,6 +135,7 @@ namespace TelkomMedikaForm
                 EscapeCsv(reservation.DoctorName),
                 EscapeCsv(reservation.AppointmentDate == DateTime.MinValue ? reservation.Day : reservation.AppointmentDate.ToString("yyyy-MM-dd")),
                 EscapeCsv(reservation.Time),
+                EscapeCsv(reservation.AppointmentTime),
                 EscapeCsv(reservation.Keluhan),
                 EscapeCsv(ToDisplayStatus(reservation.Status)),
                 EscapeCsv(reservation.RejectionReason)
@@ -213,6 +215,7 @@ namespace TelkomMedikaForm
                 existing.DoctorName == reservation.DoctorName &&
                 existing.AppointmentDate.Date == reservation.AppointmentDate.Date &&
                 existing.Time == reservation.Time &&
+                existing.AppointmentTime == reservation.AppointmentTime &&
                 existing.Status != ReservationStatus.Rejected.ToString() &&
                 existing.Status != ReservationStatus.Cancelled.ToString());
 
@@ -263,6 +266,7 @@ namespace TelkomMedikaForm
                 $"Dokter: {reservation.DoctorName}\n" +
                 $"Tanggal: {(reservation.AppointmentDate == DateTime.MinValue ? reservation.Day : reservation.AppointmentDate.ToString("dddd, dd MMMM yyyy"))}\n" +
                 $"Jadwal: {reservation.Time}\n" +
+                $"Jam reservasi: {reservation.AppointmentTime}\n" +
                 $"Keluhan: {reservation.Keluhan}\n" +
                 $"Status: {ToDisplayStatus(reservation.Status)}\n" +
                 $"Alasan penolakan: {reason}";
