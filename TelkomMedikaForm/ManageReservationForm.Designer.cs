@@ -8,12 +8,16 @@ namespace TelkomMedikaForm
         private ComboBox cmbFilterStatus;
         private Label lblFilterPoli;
         private ComboBox cmbFilterPoli;
+        private Label lblFilterDokter;
+        private ComboBox cmbFilterDokter;
         private CheckBox chkFilterTanggal;
         private DateTimePicker dtpFilterTanggal;
         private DataGridView dgvReservations;
         private Label lblStatus;
         private ComboBox cmbStatus;
         private Button btnUpdate;
+        private Button btnDetail;
+        private Button btnExport;
         private Button btnRefresh;
         private Button btnKembali;
 
@@ -31,12 +35,16 @@ namespace TelkomMedikaForm
             cmbFilterStatus = new ComboBox();
             lblFilterPoli = new Label();
             cmbFilterPoli = new ComboBox();
+            lblFilterDokter = new Label();
+            cmbFilterDokter = new ComboBox();
             chkFilterTanggal = new CheckBox();
             dtpFilterTanggal = new DateTimePicker();
             dgvReservations = new DataGridView();
             lblStatus = new Label();
             cmbStatus = new ComboBox();
             btnUpdate = new Button();
+            btnDetail = new Button();
+            btnExport = new Button();
             btnRefresh = new Button();
             btnKembali = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvReservations).BeginInit();
@@ -93,14 +101,34 @@ namespace TelkomMedikaForm
             cmbFilterPoli.TabIndex = 4;
             cmbFilterPoli.SelectedIndexChanged += FilterChanged;
             // 
+            // lblFilterDokter
+            // 
+            lblFilterDokter.AutoSize = true;
+            lblFilterDokter.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblFilterDokter.Location = new Point(420, 72);
+            lblFilterDokter.Name = "lblFilterDokter";
+            lblFilterDokter.Size = new Size(57, 20);
+            lblFilterDokter.TabIndex = 5;
+            lblFilterDokter.Text = "dokter";
+            // 
+            // cmbFilterDokter
+            // 
+            cmbFilterDokter.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbFilterDokter.FormattingEnabled = true;
+            cmbFilterDokter.Location = new Point(483, 69);
+            cmbFilterDokter.Name = "cmbFilterDokter";
+            cmbFilterDokter.Size = new Size(210, 28);
+            cmbFilterDokter.TabIndex = 6;
+            cmbFilterDokter.SelectedIndexChanged += FilterChanged;
+            // 
             // chkFilterTanggal
             // 
             chkFilterTanggal.AutoSize = true;
             chkFilterTanggal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            chkFilterTanggal.Location = new Point(420, 71);
+            chkFilterTanggal.Location = new Point(710, 71);
             chkFilterTanggal.Name = "chkFilterTanggal";
             chkFilterTanggal.Size = new Size(85, 24);
-            chkFilterTanggal.TabIndex = 5;
+            chkFilterTanggal.TabIndex = 7;
             chkFilterTanggal.Text = "tanggal";
             chkFilterTanggal.UseVisualStyleBackColor = true;
             chkFilterTanggal.CheckedChanged += FilterChanged;
@@ -108,10 +136,10 @@ namespace TelkomMedikaForm
             // dtpFilterTanggal
             // 
             dtpFilterTanggal.Format = DateTimePickerFormat.Short;
-            dtpFilterTanggal.Location = new Point(511, 69);
+            dtpFilterTanggal.Location = new Point(801, 69);
             dtpFilterTanggal.Name = "dtpFilterTanggal";
             dtpFilterTanggal.Size = new Size(135, 27);
-            dtpFilterTanggal.TabIndex = 6;
+            dtpFilterTanggal.TabIndex = 8;
             dtpFilterTanggal.ValueChanged += FilterChanged;
             // 
             // dgvReservations
@@ -132,7 +160,7 @@ namespace TelkomMedikaForm
             dgvReservations.RowHeadersWidth = 51;
             dgvReservations.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvReservations.Size = new Size(936, 320);
-            dgvReservations.TabIndex = 7;
+            dgvReservations.TabIndex = 9;
             dgvReservations.CellClick += dgvReservations_CellClick;
             // 
             // lblStatus
@@ -142,7 +170,7 @@ namespace TelkomMedikaForm
             lblStatus.Location = new Point(24, 462);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(103, 23);
-            lblStatus.TabIndex = 8;
+            lblStatus.TabIndex = 10;
             lblStatus.Text = "ubah status";
             // 
             // cmbStatus
@@ -153,7 +181,7 @@ namespace TelkomMedikaForm
             cmbStatus.Location = new Point(135, 459);
             cmbStatus.Name = "cmbStatus";
             cmbStatus.Size = new Size(180, 31);
-            cmbStatus.TabIndex = 9;
+            cmbStatus.TabIndex = 11;
             // 
             // btnUpdate
             // 
@@ -164,10 +192,38 @@ namespace TelkomMedikaForm
             btnUpdate.Location = new Point(330, 456);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(130, 36);
-            btnUpdate.TabIndex = 10;
+            btnUpdate.TabIndex = 12;
             btnUpdate.Text = "update";
             btnUpdate.UseVisualStyleBackColor = false;
             btnUpdate.Click += btnUpdate_Click;
+            // 
+            // btnDetail
+            // 
+            btnDetail.BackColor = Color.White;
+            btnDetail.FlatStyle = FlatStyle.Flat;
+            btnDetail.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnDetail.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
+            btnDetail.Location = new Point(476, 456);
+            btnDetail.Name = "btnDetail";
+            btnDetail.Size = new Size(100, 36);
+            btnDetail.TabIndex = 13;
+            btnDetail.Text = "detail";
+            btnDetail.UseVisualStyleBackColor = false;
+            btnDetail.Click += btnDetail_Click;
+            // 
+            // btnExport
+            // 
+            btnExport.BackColor = Color.White;
+            btnExport.FlatStyle = FlatStyle.Flat;
+            btnExport.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnExport.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
+            btnExport.Location = new Point(600, 456);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(100, 36);
+            btnExport.TabIndex = 14;
+            btnExport.Text = "export";
+            btnExport.UseVisualStyleBackColor = false;
+            btnExport.Click += btnExport_Click;
             // 
             // btnRefresh
             // 
@@ -178,7 +234,7 @@ namespace TelkomMedikaForm
             btnRefresh.Location = new Point(726, 456);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(110, 36);
-            btnRefresh.TabIndex = 11;
+            btnRefresh.TabIndex = 15;
             btnRefresh.Text = "refresh";
             btnRefresh.UseVisualStyleBackColor = false;
             btnRefresh.Click += btnRefresh_Click;
@@ -192,7 +248,7 @@ namespace TelkomMedikaForm
             btnKembali.Location = new Point(850, 456);
             btnKembali.Name = "btnKembali";
             btnKembali.Size = new Size(110, 36);
-            btnKembali.TabIndex = 12;
+            btnKembali.TabIndex = 16;
             btnKembali.Text = "kembali";
             btnKembali.UseVisualStyleBackColor = false;
             btnKembali.Click += btnKembali_Click;
@@ -205,12 +261,16 @@ namespace TelkomMedikaForm
             ClientSize = new Size(984, 516);
             Controls.Add(dtpFilterTanggal);
             Controls.Add(chkFilterTanggal);
+            Controls.Add(cmbFilterDokter);
+            Controls.Add(lblFilterDokter);
             Controls.Add(cmbFilterPoli);
             Controls.Add(lblFilterPoli);
             Controls.Add(cmbFilterStatus);
             Controls.Add(lblFilterStatus);
             Controls.Add(btnKembali);
             Controls.Add(btnRefresh);
+            Controls.Add(btnExport);
+            Controls.Add(btnDetail);
             Controls.Add(btnUpdate);
             Controls.Add(cmbStatus);
             Controls.Add(lblStatus);

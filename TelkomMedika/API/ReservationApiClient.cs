@@ -140,6 +140,16 @@ namespace Tubes_KPL_Kelompok_1.src.API
                             return "Kuota jadwal dokter pada tanggal tersebut sudah penuh!";
                     }
 
+                    bool patientAlreadyBooked = reservations.Any(existing =>
+                        existing.PatientUsername == reservation.PatientUsername &&
+                        existing.AppointmentDate.Date == reservation.AppointmentDate.Date &&
+                        existing.Time == reservation.Time &&
+                        existing.Status != ReservationStatus.Rejected.ToString() &&
+                        existing.Status != ReservationStatus.Cancelled.ToString());
+
+                    if (patientAlreadyBooked)
+                        return "Anda sudah memiliki reservasi aktif pada tanggal dan jam tersebut!";
+
                     reservation.Id = reservations.Count == 0 ? 1 : reservations.Max(existing => existing.Id) + 1;
 
                     reservation.BookingNumber = $"A-{reservation.Id:000}";
@@ -216,6 +226,11 @@ namespace Tubes_KPL_Kelompok_1.src.API
 
             public string UpdateReservationStatus(int id, ReservationStatus status)
             {
+                return UpdateReservationStatus(id, status, string.Empty);
+            }
+
+            public string UpdateReservationStatus(int id, ReservationStatus status, string rejectionReason)
+            {
                 if (UseRemoteReservationApi)
                 {
                     if (status == ReservationStatus.Approved)
@@ -237,6 +252,7 @@ namespace Tubes_KPL_Kelompok_1.src.API
                 }
 
                 reservation.Status = status.ToString();
+                reservation.RejectionReason = status == ReservationStatus.Rejected ? rejectionReason : string.Empty;
                 SaveReservationsToStorage();
                 return "Status reservasi berhasil diupdate!";
                 }

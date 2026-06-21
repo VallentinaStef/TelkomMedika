@@ -106,7 +106,10 @@ namespace TelkomMedikaForm
                 Day = $"{dtpTanggal.Value:dddd, dd MMMM yyyy} ({scheduleItem.Schedule.Day})",
                 AppointmentDate = dtpTanggal.Value.Date,
                 Time = scheduleItem.Schedule.Time,
-                Keluhan = keluhan
+                Keluhan = keluhan,
+                Status = UserSession.Role == "Admin"
+                    ? ReservationStatus.Approved.ToString()
+                    : ReservationStatus.Pending.ToString()
             };
 
             string result = _reservationService.AddReservation(reservation);
@@ -114,6 +117,11 @@ namespace TelkomMedikaForm
 
             if (result.Contains("berhasil", StringComparison.OrdinalIgnoreCase))
             {
+                string message = UserSession.Role == "Admin"
+                    ? "Reservasi berhasil dibuat dan langsung disetujui."
+                    : "Reservasi masuk dengan status Pending. Silakan cek Riwayat Reservasi untuk melihat persetujuan admin.";
+
+                MessageBox.Show(message, "Reservasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Close();
             }
         }

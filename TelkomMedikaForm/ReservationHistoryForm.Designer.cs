@@ -5,6 +5,8 @@ namespace TelkomMedikaForm
         private System.ComponentModel.IContainer components = null;
         private Label lblTitle;
         private DataGridView dgvReservations;
+        private Button btnDetail;
+        private Button btnBatal;
         private Button btnRefresh;
         private Button btnKembali;
 
@@ -19,6 +21,8 @@ namespace TelkomMedikaForm
         {
             lblTitle = new Label();
             dgvReservations = new DataGridView();
+            btnDetail = new Button();
+            btnBatal = new Button();
             btnRefresh = new Button();
             btnKembali = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvReservations).BeginInit();
@@ -54,6 +58,35 @@ namespace TelkomMedikaForm
             dgvReservations.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvReservations.Size = new Size(836, 340);
             dgvReservations.TabIndex = 1;
+            dgvReservations.CellClick += dgvReservations_CellClick;
+            // 
+            // btnDetail
+            // 
+            btnDetail.BackColor = Color.White;
+            btnDetail.FlatStyle = FlatStyle.Flat;
+            btnDetail.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnDetail.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
+            btnDetail.Location = new Point(392, 438);
+            btnDetail.Name = "btnDetail";
+            btnDetail.Size = new Size(110, 36);
+            btnDetail.TabIndex = 2;
+            btnDetail.Text = "detail";
+            btnDetail.UseVisualStyleBackColor = false;
+            btnDetail.Click += btnDetail_Click;
+            // 
+            // btnBatal
+            // 
+            btnBatal.BackColor = Color.White;
+            btnBatal.FlatStyle = FlatStyle.Flat;
+            btnBatal.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnBatal.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
+            btnBatal.Location = new Point(508, 438);
+            btnBatal.Name = "btnBatal";
+            btnBatal.Size = new Size(110, 36);
+            btnBatal.TabIndex = 3;
+            btnBatal.Text = "batalkan";
+            btnBatal.UseVisualStyleBackColor = false;
+            btnBatal.Click += btnBatal_Click;
             // 
             // btnRefresh
             // 
@@ -64,7 +97,7 @@ namespace TelkomMedikaForm
             btnRefresh.Location = new Point(626, 438);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(110, 36);
-            btnRefresh.TabIndex = 2;
+            btnRefresh.TabIndex = 4;
             btnRefresh.Text = "refresh";
             btnRefresh.UseVisualStyleBackColor = false;
             btnRefresh.Click += btnRefresh_Click;
@@ -78,7 +111,7 @@ namespace TelkomMedikaForm
             btnKembali.Location = new Point(750, 438);
             btnKembali.Name = "btnKembali";
             btnKembali.Size = new Size(110, 36);
-            btnKembali.TabIndex = 3;
+            btnKembali.TabIndex = 5;
             btnKembali.Text = "kembali";
             btnKembali.UseVisualStyleBackColor = false;
             btnKembali.Click += btnKembali_Click;
@@ -91,6 +124,8 @@ namespace TelkomMedikaForm
             ClientSize = new Size(884, 496);
             Controls.Add(btnKembali);
             Controls.Add(btnRefresh);
+            Controls.Add(btnBatal);
+            Controls.Add(btnDetail);
             Controls.Add(dgvReservations);
             Controls.Add(lblTitle);
             FormBorderStyle = FormBorderStyle.FixedDialog;

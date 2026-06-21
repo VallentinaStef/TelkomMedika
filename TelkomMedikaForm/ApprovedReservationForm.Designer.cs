@@ -6,7 +6,11 @@ namespace TelkomMedikaForm
         private Label lblTitle;
         private Label lblDokter;
         private ComboBox cmbDokter;
+        private CheckBox chkTanggal;
+        private DateTimePicker dtpTanggal;
         private DataGridView dgvReservations;
+        private Button btnHariIni;
+        private Button btnSelesai;
         private Button btnRefresh;
         private Button btnKembali;
 
@@ -22,7 +26,11 @@ namespace TelkomMedikaForm
             lblTitle = new Label();
             lblDokter = new Label();
             cmbDokter = new ComboBox();
+            chkTanggal = new CheckBox();
+            dtpTanggal = new DateTimePicker();
             dgvReservations = new DataGridView();
+            btnHariIni = new Button();
+            btnSelesai = new Button();
             btnRefresh = new Button();
             btnKembali = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvReservations).BeginInit();
@@ -60,6 +68,27 @@ namespace TelkomMedikaForm
             cmbDokter.TabIndex = 2;
             cmbDokter.SelectedIndexChanged += cmbDokter_SelectedIndexChanged;
             // 
+            // chkTanggal
+            // 
+            chkTanggal.AutoSize = true;
+            chkTanggal.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            chkTanggal.Location = new Point(420, 75);
+            chkTanggal.Name = "chkTanggal";
+            chkTanggal.Size = new Size(89, 27);
+            chkTanggal.TabIndex = 3;
+            chkTanggal.Text = "tanggal";
+            chkTanggal.UseVisualStyleBackColor = true;
+            chkTanggal.CheckedChanged += FilterChanged;
+            // 
+            // dtpTanggal
+            // 
+            dtpTanggal.Format = DateTimePickerFormat.Short;
+            dtpTanggal.Location = new Point(515, 75);
+            dtpTanggal.Name = "dtpTanggal";
+            dtpTanggal.Size = new Size(130, 27);
+            dtpTanggal.TabIndex = 4;
+            dtpTanggal.ValueChanged += FilterChanged;
+            // 
             // dgvReservations
             // 
             dgvReservations.AllowUserToAddRows = false;
@@ -78,7 +107,36 @@ namespace TelkomMedikaForm
             dgvReservations.RowHeadersWidth = 51;
             dgvReservations.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvReservations.Size = new Size(936, 312);
-            dgvReservations.TabIndex = 3;
+            dgvReservations.TabIndex = 5;
+            dgvReservations.CellClick += dgvReservations_CellClick;
+            // 
+            // btnHariIni
+            // 
+            btnHariIni.BackColor = Color.White;
+            btnHariIni.FlatStyle = FlatStyle.Flat;
+            btnHariIni.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnHariIni.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
+            btnHariIni.Location = new Point(602, 456);
+            btnHariIni.Name = "btnHariIni";
+            btnHariIni.Size = new Size(110, 36);
+            btnHariIni.TabIndex = 6;
+            btnHariIni.Text = "hari ini";
+            btnHariIni.UseVisualStyleBackColor = false;
+            btnHariIni.Click += btnHariIni_Click;
+            // 
+            // btnSelesai
+            // 
+            btnSelesai.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
+            btnSelesai.FlatStyle = FlatStyle.Flat;
+            btnSelesai.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnSelesai.ForeColor = Color.White;
+            btnSelesai.Location = new Point(718, 456);
+            btnSelesai.Name = "btnSelesai";
+            btnSelesai.Size = new Size(110, 36);
+            btnSelesai.TabIndex = 7;
+            btnSelesai.Text = "selesai";
+            btnSelesai.UseVisualStyleBackColor = false;
+            btnSelesai.Click += btnSelesai_Click;
             // 
             // btnRefresh
             // 
@@ -86,10 +144,10 @@ namespace TelkomMedikaForm
             btnRefresh.FlatStyle = FlatStyle.Flat;
             btnRefresh.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnRefresh.ForeColor = Color.White;
-            btnRefresh.Location = new Point(726, 456);
+            btnRefresh.Location = new Point(834, 456);
             btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(110, 36);
-            btnRefresh.TabIndex = 4;
+            btnRefresh.Size = new Size(100, 36);
+            btnRefresh.TabIndex = 8;
             btnRefresh.Text = "refresh";
             btnRefresh.UseVisualStyleBackColor = false;
             btnRefresh.Click += btnRefresh_Click;
@@ -100,10 +158,10 @@ namespace TelkomMedikaForm
             btnKembali.FlatStyle = FlatStyle.Flat;
             btnKembali.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnKembali.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
-            btnKembali.Location = new Point(850, 456);
+            btnKembali.Location = new Point(24, 456);
             btnKembali.Name = "btnKembali";
             btnKembali.Size = new Size(110, 36);
-            btnKembali.TabIndex = 5;
+            btnKembali.TabIndex = 9;
             btnKembali.Text = "kembali";
             btnKembali.UseVisualStyleBackColor = false;
             btnKembali.Click += btnKembali_Click;
@@ -116,7 +174,11 @@ namespace TelkomMedikaForm
             ClientSize = new Size(984, 516);
             Controls.Add(btnKembali);
             Controls.Add(btnRefresh);
+            Controls.Add(btnSelesai);
+            Controls.Add(btnHariIni);
             Controls.Add(dgvReservations);
+            Controls.Add(dtpTanggal);
+            Controls.Add(chkTanggal);
             Controls.Add(cmbDokter);
             Controls.Add(lblDokter);
             Controls.Add(lblTitle);

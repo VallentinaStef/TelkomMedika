@@ -26,6 +26,8 @@ namespace Tubes_KPL_Kelompok_1.src.Models
 
         public string Keluhan { get; set; }
 
+        public string RejectionReason { get; set; }
+
         public string BookingNumber { get; set; }
 
         public DateTime ReservationDate { get; set; }

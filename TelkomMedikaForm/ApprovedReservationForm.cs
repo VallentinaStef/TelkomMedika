@@ -13,6 +13,7 @@ namespace TelkomMedikaForm
         {
             InitializeComponent();
             _reservationService = new ReservationService(new ReservationApiClient());
+            dtpTanggal.Value = DateTime.Today;
             LoadDoctorFilter();
             LoadReservations();
         }
@@ -38,6 +39,7 @@ namespace TelkomMedikaForm
             _approvedReservations = _reservationService.GetReservations()
                 .Where(reservation => reservation.Status == ReservationStatus.Approved.ToString())
                 .Where(reservation => selectedDoctor == "Semua" || reservation.DoctorName == selectedDoctor)
+                .Where(reservation => !chkTanggal.Checked || reservation.AppointmentDate.Date == dtpTanggal.Value.Date)
                 .ToList();
 
             dgvReservations.DataSource = _approvedReservations
@@ -55,6 +57,8 @@ namespace TelkomMedikaForm
                     Status = "Disetujui"
                 })
                 .ToList();
+
+            btnSelesai.Enabled = _approvedReservations.Count > 0;
         }
 
         private void cmbDokter_SelectedIndexChanged(object? sender, EventArgs e)
@@ -65,6 +69,41 @@ namespace TelkomMedikaForm
         private void btnRefresh_Click(object? sender, EventArgs e)
         {
             LoadReservations();
+        }
+
+        private void FilterChanged(object? sender, EventArgs e)
+        {
+            LoadReservations();
+        }
+
+        private void btnHariIni_Click(object? sender, EventArgs e)
+        {
+            chkTanggal.Checked = true;
+            dtpTanggal.Value = DateTime.Today;
+            LoadReservations();
+        }
+
+        private void btnSelesai_Click(object? sender, EventArgs e)
+        {
+            if (dgvReservations.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Pilih reservasi terlebih dahulu.", "Reservasi Disetujui", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int index = dgvReservations.SelectedRows[0].Index;
+            if (index < 0 || index >= _approvedReservations.Count)
+                return;
+
+            string result = _reservationService.UpdateReservationStatus(_approvedReservations[index].Id, ReservationStatus.Completed);
+            MessageBox.Show(result, "Reservasi Disetujui", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LoadReservations();
+        }
+
+        private void dgvReservations_CellClick(object? sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+                dgvReservations.Rows[e.RowIndex].Selected = true;
         }
 
         private void btnKembali_Click(object? sender, EventArgs e)
