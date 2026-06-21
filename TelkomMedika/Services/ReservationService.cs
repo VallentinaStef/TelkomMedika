@@ -92,5 +92,10 @@ namespace Tubes_KPL_Kelompok_1.src.Services
         {
             return api.CancelReservation(id);
         }
+
+        public string UpdateReservationStatus(int id, ReservationStatus status)
+        {
+            return api.UpdateReservationStatus(id, status);
+        }
     }
 }
