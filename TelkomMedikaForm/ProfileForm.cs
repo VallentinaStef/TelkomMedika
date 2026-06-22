@@ -93,7 +93,7 @@ namespace TelkomMedikaForm
             }
             else if (showTelpKantor)
             {
-                btnEdit.Location = new Point(210, 500);
+                btnEdit.Location = new Point(210, 480);
                 panelCard.Height = 550;
             }
             else

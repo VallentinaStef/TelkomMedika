@@ -21,6 +21,9 @@ namespace TelkomMedikaForm
                     txtAlamat.Text = resp.Data.Alamat;
                 }
                 ShowPasienFields(true);
+                ClientSize = new Size(350, 360);
+                btnSave.Location = new Point(80, 300);
+                btnCancel.Location = new Point(180, 300);
             }
             else if (role == "Admin")
             {
@@ -33,11 +36,17 @@ namespace TelkomMedikaForm
                 }
                 ShowPasienFields(false);
                 ShowAdminFields(true);
+                ClientSize = new Size(350, 270);
+                btnSave.Location = new Point(80, 210);
+                btnCancel.Location = new Point(180, 210);
             }
             else
             {
                 txtName.Text = UserSession.Name;
                 ShowPasienFields(false);
+                ClientSize = new Size(350, 200);
+                btnSave.Location = new Point(80, 140);
+                btnCancel.Location = new Point(180, 140);
             }
 
             txtName.SelectAll();
