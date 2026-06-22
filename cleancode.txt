@@ -1,0 +1,22 @@
+
+
+Pastikan kode yang dikumpulkan sudah memperhatikan beberapa aspek berikut:
+1. Naming convention
+Perbaiki penamaan agar konsisten dan mudah dipahami, meliputi:
+a. Nama Variable
+b. Nama Property
+c. Nama Attribute
+d. Nama Method
+e. Nama Function
+f. Nama Procedure
+2. White space dan indentation
+Rapikan penggunaan spasi, baris kosong, dan indentasi agar struktur kode lebih mudah dibaca.
+Sebelum	Sesudah
+ 	 
+3. Variable / Attribute Declarations
+a. Gunakan tipe data yang sesuai.
+b. Hindari variable yang tidak digunakan.
+public CovidConfig()  {}
+
+4. Comments
+Tambahkan komentar seperlunya untuk menjelaskan bagian kode yang penting atau sulit dipahami.

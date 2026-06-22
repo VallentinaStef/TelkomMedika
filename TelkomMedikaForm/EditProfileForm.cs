@@ -8,8 +8,35 @@ namespace TelkomMedikaForm
         public EditProfileForm()
         {
             InitializeComponent();
-            txtName.Text = UserSession.Name;
+            string role = UserSession.Role;
+
+            if (role == "Pasien")
+            {
+                var pasienSvc = new ProfileService<PasienProfile>();
+                var resp = pasienSvc.GetProfile(UserSession.Username);
+                if (resp.Status && resp.Data != null)
+                {
+                    txtName.Text = resp.Data.Name;
+                    txtNoTelp.Text = resp.Data.NoTelp;
+                    txtAlamat.Text = resp.Data.Alamat;
+                }
+                ShowPasienFields(true);
+            }
+            else
+            {
+                txtName.Text = UserSession.Name;
+                ShowPasienFields(false);
+            }
+
             txtName.SelectAll();
+        }
+
+        private void ShowPasienFields(bool show)
+        {
+            lblNoTelpLabel.Visible = show;
+            txtNoTelp.Visible = show;
+            lblAlamatLabel.Visible = show;
+            txtAlamat.Visible = show;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -52,6 +79,8 @@ namespace TelkomMedikaForm
                     if (pasienResp.Status && pasienResp.Data != null)
                     {
                         pasienResp.Data.Name = newName;
+                        pasienResp.Data.NoTelp = txtNoTelp.Text.Trim();
+                        pasienResp.Data.Alamat = txtAlamat.Text.Trim();
                         updated = new ProfileService<PasienProfile>().UpdateProfile(username, pasienResp.Data).Status;
                     }
                     break;
