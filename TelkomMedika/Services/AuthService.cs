@@ -82,7 +82,7 @@ namespace TelkomMedika.Services
                 UserSession.Username = username;
                 UserSession.Name = "Admin";
                 UserSession.Role = "Admin";
-                ProfileService<AdminProfile>.Seed(username, new AdminProfile { Username = username, Name = "Admin", Role = "Admin" });
+                ProfileService<AdminProfile>.Seed(username, new AdminProfile { Username = username, Name = "Admin", Role = "Admin", NoTelpKantor = "021-1234567" });
 
                 return new Response<User> { Status = true, Data = CurrentUser, Message = "Login berhasil sebagai Admin!" };
             }

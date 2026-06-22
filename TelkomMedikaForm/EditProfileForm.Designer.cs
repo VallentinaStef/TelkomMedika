@@ -21,6 +21,8 @@ namespace TelkomMedikaForm
             txtNoTelp = new TextBox();
             lblAlamatLabel = new Label();
             txtAlamat = new TextBox();
+            lblTelpKantorLabel = new Label();
+            txtTelpKantor = new TextBox();
             btnSave = new Button();
             btnCancel = new Button();
             SuspendLayout();
@@ -48,6 +50,26 @@ namespace TelkomMedikaForm
             // txtNoTelp
             //
             txtNoTelp.TabIndex = 3;
+            // 
+            // lblTelpKantorLabel
+            // 
+            lblTelpKantorLabel.AutoSize = true;
+            lblTelpKantorLabel.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblTelpKantorLabel.Location = new Point(20, 110);
+            lblTelpKantorLabel.Name = "lblTelpKantorLabel";
+            lblTelpKantorLabel.Size = new Size(133, 30);
+            lblTelpKantorLabel.TabIndex = 8;
+            lblTelpKantorLabel.Text = "Telp. Kantor:";
+            lblTelpKantorLabel.Visible = false;
+            // 
+            // txtTelpKantor
+            // 
+            txtTelpKantor.Font = new Font("Segoe UI", 11F);
+            txtTelpKantor.Location = new Point(20, 145);
+            txtTelpKantor.Name = "txtTelpKantor";
+            txtTelpKantor.Size = new Size(310, 37);
+            txtTelpKantor.TabIndex = 9;
+            txtTelpKantor.Visible = false;
             //
             // lblAlamatLabel
             //
@@ -129,6 +151,8 @@ namespace TelkomMedikaForm
             Controls.Add(lblAlamatLabel);
             Controls.Add(txtNoTelp);
             Controls.Add(lblNoTelpLabel);
+            Controls.Add(txtTelpKantor);
+            Controls.Add(lblTelpKantorLabel);
             Controls.Add(txtName);
             Controls.Add(lblLabel);
             FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -147,6 +171,8 @@ namespace TelkomMedikaForm
         private TextBox txtNoTelp;
         private Label lblAlamatLabel;
         private TextBox txtAlamat;
+        private Label lblTelpKantorLabel;
+        private TextBox txtTelpKantor;
         private Button btnSave;
         private Button btnCancel;
     }

@@ -22,6 +22,18 @@ namespace TelkomMedikaForm
                 }
                 ShowPasienFields(true);
             }
+            else if (role == "Admin")
+            {
+                var adminSvc = new ProfileService<AdminProfile>();
+                var resp = adminSvc.GetProfile(UserSession.Username);
+                if (resp.Status && resp.Data != null)
+                {
+                    txtName.Text = resp.Data.Name;
+                    txtTelpKantor.Text = resp.Data.NoTelpKantor;
+                }
+                ShowPasienFields(false);
+                ShowAdminFields(true);
+            }
             else
             {
                 txtName.Text = UserSession.Name;
@@ -37,6 +49,12 @@ namespace TelkomMedikaForm
             txtNoTelp.Visible = show;
             lblAlamatLabel.Visible = show;
             txtAlamat.Visible = show;
+        }
+
+        private void ShowAdminFields(bool show)
+        {
+            lblTelpKantorLabel.Visible = show;
+            txtTelpKantor.Visible = show;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -61,6 +79,7 @@ namespace TelkomMedikaForm
                     if (adminResp.Status && adminResp.Data != null)
                     {
                         adminResp.Data.Name = newName;
+                        adminResp.Data.NoTelpKantor = txtTelpKantor.Text.Trim();
                         updated = new ProfileService<AdminProfile>().UpdateProfile(username, adminResp.Data).Status;
                     }
                     break;

@@ -28,6 +28,8 @@ namespace TelkomMedikaForm
             lblNoTelpValue = new Label();
             lblAlamatLabel = new Label();
             lblAlamatValue = new Label();
+            lblTelpKantorLabel = new Label();
+            lblTelpKantorValue = new Label();
             btnEdit = new Button();
             panelCard.SuspendLayout();
             SuspendLayout();
@@ -48,6 +50,8 @@ namespace TelkomMedikaForm
             panelCard.Controls.Add(lblNoTelpValue);
             panelCard.Controls.Add(lblAlamatLabel);
             panelCard.Controls.Add(lblAlamatValue);
+            panelCard.Controls.Add(lblTelpKantorLabel);
+            panelCard.Controls.Add(lblTelpKantorValue);
             panelCard.Controls.Add(btnEdit);
             panelCard.Location = new Point(250, 100);
             panelCard.Margin = new Padding(4);
@@ -186,6 +190,29 @@ namespace TelkomMedikaForm
             lblAlamatValue.Size = new Size(0, 30);
             lblAlamatValue.TabIndex = 12;
             // 
+            // lblTelpKantorLabel
+            // 
+            lblTelpKantorLabel.AutoSize = true;
+            lblTelpKantorLabel.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblTelpKantorLabel.Location = new Point(75, 376);
+            lblTelpKantorLabel.Margin = new Padding(4, 0, 4, 0);
+            lblTelpKantorLabel.Name = "lblTelpKantorLabel";
+            lblTelpKantorLabel.Size = new Size(144, 30);
+            lblTelpKantorLabel.TabIndex = 14;
+            lblTelpKantorLabel.Text = "Telp. Kantor:";
+            lblTelpKantorLabel.Visible = false;
+            // 
+            // lblTelpKantorValue
+            // 
+            lblTelpKantorValue.AutoSize = true;
+            lblTelpKantorValue.Font = new Font("Segoe UI", 11F);
+            lblTelpKantorValue.Location = new Point(75, 414);
+            lblTelpKantorValue.Margin = new Padding(4, 0, 4, 0);
+            lblTelpKantorValue.Name = "lblTelpKantorValue";
+            lblTelpKantorValue.Size = new Size(0, 30);
+            lblTelpKantorValue.TabIndex = 15;
+            lblTelpKantorValue.Visible = false;
+            // 
             // btnEdit
             // 
             btnEdit.BackColor = Color.FromArgb(198, 40, 40);
@@ -230,6 +257,8 @@ namespace TelkomMedikaForm
         private Label lblNoTelpValue;
         private Label lblAlamatLabel;
         private Label lblAlamatValue;
+        private Label lblTelpKantorLabel;
+        private Label lblTelpKantorValue;
         private Button btnEdit;
     }
 }
