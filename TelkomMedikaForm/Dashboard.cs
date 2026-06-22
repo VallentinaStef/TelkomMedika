@@ -12,7 +12,8 @@ namespace TelkomMedikaForm
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-            lblWelcome.Text = $"Selamat Datang, {UserSession.Name}";
+            string welcomeName = UserSession.Role == "Dokter" ? "Dokter" : UserSession.Name;
+            lblWelcome.Text = $"Selamat Datang, {welcomeName}";
             lblRoleDisplay.Text = $"Anda login sebagai {UserSession.Role}";
             SetupSidebarMenu();
         }
@@ -69,7 +70,6 @@ namespace TelkomMedikaForm
                 },
                 ["Dokter"] = new()
                 {
-                    ("Profil", "profil"),
                     ("Riwayat Layanan Pasien", "riwayatlayanan"),
                     ("Rekam Medis Pasien", "rekammedis"),
                     ("Reservasi Disetujui", "reservasidisetujui"),
