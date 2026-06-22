@@ -32,7 +32,6 @@ namespace TelkomMedika.Services
 
         private static readonly List<PatientAccount> PatientAccounts = new()
         {
-            new PatientAccount { Username = "pasien", Name = "Andi Pratama", PatientId = 1, Phone = "08123456789", Address = "Jl. Merdeka No. 10, Bandung" },
             new PatientAccount { Username = "pasien1", Name = "Andi Pratama", PatientId = 1, Phone = "08123456789", Address = "Jl. Merdeka No. 10, Bandung" },
             new PatientAccount { Username = "pasien2", Name = "Siti Rahma", PatientId = 2, Phone = "08129876543", Address = "Jl. Telekomunikasi No. 5, Bandung" },
             new PatientAccount { Username = "pasien3", Name = "Raka Wijaya", PatientId = 3, Phone = "08127654321", Address = "Jl. Dipatiukur No. 21, Bandung" }
