@@ -30,7 +30,9 @@ namespace TelkomMedikaForm
                         lblUsernameValue.Text = adminResp.Data.Username;
                         lblRoleValue.Text = adminResp.Data.Role;
                         lblNameValue.Text = adminResp.Data.Name;
+                        lblTelpKantorValue.Text = adminResp.Data.NoTelpKantor;
                     }
+                    ShowExtraFields(showNoTelp: false, showAlamat: false, showTelpKantor: true);
                     break;
 
                 case "Dokter":
@@ -42,6 +44,7 @@ namespace TelkomMedikaForm
                         lblRoleValue.Text = dokterResp.Data.Role;
                         lblNameValue.Text = dokterResp.Data.Name;
                     }
+                    ShowExtraFields(showNoTelp: false, showAlamat: false, showTelpKantor: false);
                     break;
 
                 case "Pasien":
@@ -52,19 +55,52 @@ namespace TelkomMedikaForm
                         lblUsernameValue.Text = pasienResp.Data.Username;
                         lblRoleValue.Text = pasienResp.Data.Role;
                         lblNameValue.Text = pasienResp.Data.Name;
+                        lblNoTelpValue.Text = pasienResp.Data.NoTelp;
+                        lblAlamatValue.Text = pasienResp.Data.Alamat;
                     }
+                    ShowExtraFields(showNoTelp: true, showAlamat: true, showTelpKantor: false);
                     break;
 
                 default:
                     lblUsernameValue.Text = username;
                     lblRoleValue.Text = role;
                     lblNameValue.Text = UserSession.Name;
+                    ShowExtraFields(showNoTelp: false, showAlamat: false, showTelpKantor: false);
                     break;
             }
 
             lblUsernameValue.ForeColor = Color.FromArgb(0x33, 0x33, 0x33);
             lblRoleValue.ForeColor = Color.FromArgb(0x33, 0x33, 0x33);
             lblNameValue.ForeColor = Color.FromArgb(0x33, 0x33, 0x33);
+            lblNoTelpValue.ForeColor = Color.FromArgb(0x33, 0x33, 0x33);
+            lblAlamatValue.ForeColor = Color.FromArgb(0x33, 0x33, 0x33);
+            lblTelpKantorValue.ForeColor = Color.FromArgb(0x33, 0x33, 0x33);
+        }
+
+        private void ShowExtraFields(bool showNoTelp, bool showAlamat, bool showTelpKantor)
+        {
+            lblNoTelpLabel.Visible = showNoTelp;
+            lblNoTelpValue.Visible = showNoTelp;
+            lblAlamatLabel.Visible = showAlamat;
+            lblAlamatValue.Visible = showAlamat;
+            lblTelpKantorLabel.Visible = showTelpKantor;
+            lblTelpKantorValue.Visible = showTelpKantor;
+
+            if (showAlamat)
+            {
+                btnEdit.Location = new Point(210, 560);
+                panelCard.Height = 610;
+            }
+            else if (showTelpKantor)
+            {
+                btnEdit.Location = new Point(210, 480);
+                panelCard.Height = 550;
+            }
+            else
+            {
+                btnEdit.Location = new Point(210, 390);
+                panelCard.Height = 440;
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)

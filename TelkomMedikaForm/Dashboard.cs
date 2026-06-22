@@ -12,9 +12,25 @@ namespace TelkomMedikaForm
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-            lblWelcome.Text = $"Selamat Datang, {UserSession.Name}";
-            lblRoleDisplay.Text = $"Anda login sebagai {UserSession.Role}";
+            SetWelcomeLabel();
             SetupSidebarMenu();
+        }
+
+        private void SetWelcomeLabel()
+        {
+            string welcomeName = UserSession.Role == "Dokter" ? "Dokter" : UserSession.Name;
+            lblWelcome.Text = $"Selamat Datang, {welcomeName}";
+            lblRoleDisplay.Text = $"Anda login sebagai {UserSession.Role}";
+        }
+
+        internal void RefreshWelcome()
+        {
+            SetWelcomeLabel();
+        }
+
+        private void Dashboard_Activated(object? sender, EventArgs e)
+        {
+            SetWelcomeLabel();
         }
 
         private Button _activeMenuButton;
@@ -70,8 +86,6 @@ namespace TelkomMedikaForm
                 },
                 ["Dokter"] = new()
                 {
-                    ("Profil", "profil"),
-                    ("Kartu Pasien", "kartupasien"),
                     ("Riwayat Layanan Pasien", "riwayatlayanan"),
                     ("Rekam Medis Pasien", "rekammedis"),
                     ("Reservasi Disetujui", "reservasidisetujui"),
@@ -111,8 +125,9 @@ namespace TelkomMedikaForm
             switch (action)
             {
                 case "profil":
-                    var profileForm = new ProfileForm();
-                    profileForm.Show();
+                    using (var pf = new ProfileForm())
+                        pf.ShowDialog();
+                    RefreshWelcome();
                     break;
 
                 case "logout":

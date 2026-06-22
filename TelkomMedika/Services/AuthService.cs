@@ -32,7 +32,6 @@ namespace TelkomMedika.Services
 
         private static readonly List<PatientAccount> PatientAccounts = new()
         {
-            new PatientAccount { Username = "pasien", Name = "Andi Pratama", PatientId = 1, Phone = "08123456789", Address = "Jl. Merdeka No. 10, Bandung" },
             new PatientAccount { Username = "pasien1", Name = "Andi Pratama", PatientId = 1, Phone = "08123456789", Address = "Jl. Merdeka No. 10, Bandung" },
             new PatientAccount { Username = "pasien2", Name = "Siti Rahma", PatientId = 2, Phone = "08129876543", Address = "Jl. Telekomunikasi No. 5, Bandung" },
             new PatientAccount { Username = "pasien3", Name = "Raka Wijaya", PatientId = 3, Phone = "08127654321", Address = "Jl. Dipatiukur No. 21, Bandung" }
@@ -79,11 +78,14 @@ namespace TelkomMedika.Services
                 State = AuthState.LoggedIn;
                 _loginMap.TryRemove(username, out _);
 
-                CurrentUser = new User { Username = username, Name = "Admin", Role = "Admin" };
+                ProfileService<AdminProfile>.Seed(username, new AdminProfile { Username = username, Name = "Admin", Role = "Admin", NoTelpKantor = "021-1234567" });
+                var adminProfile = new ProfileService<AdminProfile>().GetProfile(username);
+                string adminName = adminProfile.Status && adminProfile.Data != null ? adminProfile.Data.Name : "Admin";
+
+                CurrentUser = new User { Username = username, Name = adminName, Role = "Admin" };
                 UserSession.Username = username;
-                UserSession.Name = "Admin";
+                UserSession.Name = adminName;
                 UserSession.Role = "Admin";
-                ProfileService<AdminProfile>.Seed(username, new AdminProfile { Username = username, Name = "Admin", Role = "Admin" });
 
                 return new Response<User> { Status = true, Data = CurrentUser, Message = "Login berhasil sebagai Admin!" };
             }
@@ -93,11 +95,14 @@ namespace TelkomMedika.Services
                 State = AuthState.LoggedIn;
                 _loginMap.TryRemove(username, out _);
 
-                CurrentUser = new User { Username = username, Name = "Dr. Budi", Role = "Dokter" };
-                UserSession.Username = username;
-                UserSession.Name = "Dr. Budi";
-                UserSession.Role = "Dokter";
                 ProfileService<DokterProfile>.Seed(username, new DokterProfile { Username = username, Name = "Dr. Budi", Role = "Dokter", Spesialisasi = "Umum", NomorSTR = "STR-12345" });
+                var dokterProfile = new ProfileService<DokterProfile>().GetProfile(username);
+                string dokterName = dokterProfile.Status && dokterProfile.Data != null ? dokterProfile.Data.Name : "Dr. Budi";
+
+                CurrentUser = new User { Username = username, Name = dokterName, Role = "Dokter" };
+                UserSession.Username = username;
+                UserSession.Name = dokterName;
+                UserSession.Role = "Dokter";
 
                 return new Response<User> { Status = true, Data = CurrentUser, Message = "Login berhasil sebagai Dokter!" };
             }
@@ -175,19 +180,6 @@ namespace TelkomMedika.Services
             State = AuthState.LoggedIn;
             _loginMap.TryRemove(patient.Username, out _);
 
-            CurrentUser = new User
-            {
-                Username = patient.Username,
-                Name = patient.Name,
-                Role = "Pasien",
-                PatientId = patient.PatientId
-            };
-
-            UserSession.Username = patient.Username;
-            UserSession.Name = patient.Name;
-            UserSession.Role = "Pasien";
-            UserSession.PatientId = patient.PatientId;
-
             ProfileService<PasienProfile>.Seed(patient.Username, new PasienProfile
             {
                 Username = patient.Username,
@@ -197,7 +189,23 @@ namespace TelkomMedika.Services
                 Alamat = patient.Address
             });
 
-            return new Response<User> { Status = true, Data = CurrentUser, Message = $"Login berhasil sebagai Pasien {patient.Name}!" };
+            var pasienProfile = new ProfileService<PasienProfile>().GetProfile(patient.Username);
+            string pasienName = pasienProfile.Status && pasienProfile.Data != null ? pasienProfile.Data.Name : patient.Name;
+
+            CurrentUser = new User
+            {
+                Username = patient.Username,
+                Name = pasienName,
+                Role = "Pasien",
+                PatientId = patient.PatientId
+            };
+
+            UserSession.Username = patient.Username;
+            UserSession.Name = pasienName;
+            UserSession.Role = "Pasien";
+            UserSession.PatientId = patient.PatientId;
+
+            return new Response<User> { Status = true, Data = CurrentUser, Message = $"Login berhasil sebagai Pasien {pasienName}!" };
         }
 
         public List<string> GetLockedUsers()
