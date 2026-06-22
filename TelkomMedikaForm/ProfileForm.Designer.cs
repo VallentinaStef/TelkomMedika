@@ -52,14 +52,14 @@ namespace TelkomMedikaForm
             panelCard.Location = new Point(250, 100);
             panelCard.Margin = new Padding(4);
             panelCard.Name = "panelCard";
-            panelCard.Size = new Size(500, 550);
+            panelCard.Size = new Size(500, 578);
             panelCard.TabIndex = 0;
             // 
             // btnBack
             // 
             btnBack.BackColor = Color.Transparent;
             btnBack.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnBack.ForeColor = Color.FromArgb(0x33, 0x33, 0x33);
+            btnBack.ForeColor = Color.FromArgb(51, 51, 51);
             btnBack.Location = new Point(20, 15);
             btnBack.Margin = new Padding(4);
             btnBack.Name = "btnBack";
@@ -73,7 +73,7 @@ namespace TelkomMedikaForm
             // 
             lblProfileTitle.AutoSize = true;
             lblProfileTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            lblProfileTitle.ForeColor = Color.FromArgb(0xC6, 0x28, 0x28);
+            lblProfileTitle.ForeColor = Color.FromArgb(198, 40, 40);
             lblProfileTitle.Location = new Point(194, 25);
             lblProfileTitle.Margin = new Padding(4, 0, 4, 0);
             lblProfileTitle.Name = "lblProfileTitle";
@@ -144,7 +144,6 @@ namespace TelkomMedikaForm
             lblNameValue.Size = new Size(0, 30);
             lblNameValue.TabIndex = 6;
             // 
-            // 
             // lblNoTelpLabel
             // 
             lblNoTelpLabel.AutoSize = true;
@@ -152,7 +151,7 @@ namespace TelkomMedikaForm
             lblNoTelpLabel.Location = new Point(75, 376);
             lblNoTelpLabel.Margin = new Padding(4, 0, 4, 0);
             lblNoTelpLabel.Name = "lblNoTelpLabel";
-            lblNoTelpLabel.Size = new Size(81, 30);
+            lblNoTelpLabel.Size = new Size(104, 30);
             lblNoTelpLabel.TabIndex = 9;
             lblNoTelpLabel.Text = "No. Telp:";
             // 
@@ -173,7 +172,7 @@ namespace TelkomMedikaForm
             lblAlamatLabel.Location = new Point(75, 464);
             lblAlamatLabel.Margin = new Padding(4, 0, 4, 0);
             lblAlamatLabel.Name = "lblAlamatLabel";
-            lblAlamatLabel.Size = new Size(82, 30);
+            lblAlamatLabel.Size = new Size(93, 30);
             lblAlamatLabel.TabIndex = 11;
             lblAlamatLabel.Text = "Alamat:";
             // 
@@ -189,13 +188,13 @@ namespace TelkomMedikaForm
             // 
             // btnEdit
             // 
-            btnEdit.BackColor = Color.FromArgb(0xC6, 0x28, 0x28);
+            btnEdit.BackColor = Color.FromArgb(198, 40, 40);
             btnEdit.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnEdit.ForeColor = Color.White;
-            btnEdit.Location = new Point(220, 321);
+            btnEdit.Location = new Point(205, 519);
             btnEdit.Margin = new Padding(4);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(80, 35);
+            btnEdit.Size = new Size(102, 39);
             btnEdit.TabIndex = 13;
             btnEdit.Text = "Edit";
             btnEdit.UseVisualStyleBackColor = false;
@@ -205,8 +204,8 @@ namespace TelkomMedikaForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(0xFD, 0xEC, 0xEC);
-            ClientSize = new Size(1000, 600);
+            BackColor = Color.FromArgb(253, 236, 236);
+            ClientSize = new Size(1000, 691);
             Controls.Add(panelCard);
             Margin = new Padding(4);
             Name = "ProfileForm";
