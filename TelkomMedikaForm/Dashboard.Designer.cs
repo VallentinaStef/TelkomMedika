@@ -100,6 +100,7 @@
             Text = "TelkomMedika - Dashboard";
             FormClosed += Dashboard_FormClosed;
             Load += Dashboard_Load;
+            Activated += Dashboard_Activated;
             panelContent.ResumeLayout(false);
             panelContent.PerformLayout();
             panelHeader.ResumeLayout(false);

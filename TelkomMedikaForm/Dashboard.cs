@@ -28,6 +28,11 @@ namespace TelkomMedikaForm
             SetWelcomeLabel();
         }
 
+        private void Dashboard_Activated(object? sender, EventArgs e)
+        {
+            SetWelcomeLabel();
+        }
+
         private Button _activeMenuButton;
 
         private void SetupSidebarMenu()
