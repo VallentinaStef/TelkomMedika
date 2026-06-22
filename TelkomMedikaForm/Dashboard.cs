@@ -63,7 +63,8 @@ namespace TelkomMedikaForm
                     ("Reservasi", "reservasi"),
                     ("Kelola Reservasi", "kelolareservasi"),
                     ("Jadwal Dokter", "jadwaldokter"),
-                    ("Notifikasi dan Konsultasi", "notifikasi"),
+                    ("Notifikasi", "notifikasi"),
+                    ("Konsultasi", "konsultasi"),
                     ("Unlock User", "unlock"),
                     ("Logout", "logout")
                 },
@@ -85,7 +86,8 @@ namespace TelkomMedikaForm
                     ("Rekam Medis", "rekammedis"),
                     ("Reservasi", "reservasi"),
                     ("Jadwal Dokter", "jadwaldokter"),
-                    ("Notifikasi dan Konsultasi", "notifikasi"),
+                    ("Notifikasi", "notifikasi"),
+                    ("Konsultasi", "konsultasi"),
                     ("Pengingat Obat", "pengingatobat"),
                     ("Logout", "logout")
                 }
@@ -160,6 +162,16 @@ namespace TelkomMedikaForm
                 case "rekammedis":
                     var medicalRecordForm = new MedicalRecordForm();
                     medicalRecordForm.ShowDialog();
+                    break;
+
+                case "notifikasi":
+                    var notifikasiForm = new NotifikasiForm();
+                    notifikasiForm.ShowDialog();
+                    break;
+
+                case "konsultasi":
+                    var konsultasiForm = new KonsultasiForm();
+                    konsultasiForm.ShowDialog();
                     break;
 
                 default:
