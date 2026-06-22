@@ -116,7 +116,7 @@ namespace TelkomMedikaForm
             txtCekJam.PlaceholderText = "08:00";
             txtCekJam.Size = new Size(90, 27);
             txtCekJam.TabIndex = 1;
-            txtCekJam.TextChanged += txtCekJam_TextChanged;
+
             // 
             // btnCekReminder
             // 
