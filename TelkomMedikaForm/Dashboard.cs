@@ -70,7 +70,6 @@ namespace TelkomMedikaForm
                 ["Dokter"] = new()
                 {
                     ("Profil", "profil"),
-                    ("Kartu Pasien", "kartupasien"),
                     ("Riwayat Layanan Pasien", "riwayatlayanan"),
                     ("Rekam Medis Pasien", "rekammedis"),
                     ("Reservasi Disetujui", "reservasidisetujui"),
