@@ -35,18 +35,6 @@ namespace TelkomMedikaForm
                     ShowExtraFields(showNoTelp: false, showAlamat: false, showTelpKantor: true);
                     break;
 
-                case "Dokter":
-                    var dokterSvc = new ProfileService<DokterProfile>();
-                    var dokterResp = dokterSvc.GetProfile(username);
-                    if (dokterResp.Status && dokterResp.Data != null)
-                    {
-                        lblUsernameValue.Text = dokterResp.Data.Username;
-                        lblRoleValue.Text = dokterResp.Data.Role;
-                        lblNameValue.Text = dokterResp.Data.Name;
-                    }
-                    ShowExtraFields(showNoTelp: false, showAlamat: false, showTelpKantor: false);
-                    break;
-
                 case "Pasien":
                     var pasienSvc = new ProfileService<PasienProfile>();
                     var pasienResp = pasienSvc.GetProfile(username);

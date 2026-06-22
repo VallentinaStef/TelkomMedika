@@ -95,13 +95,9 @@ namespace TelkomMedika.Services
                 State = AuthState.LoggedIn;
                 _loginMap.TryRemove(username, out _);
 
-                ProfileService<DokterProfile>.Seed(username, new DokterProfile { Username = username, Name = "Dr. Budi", Role = "Dokter", Spesialisasi = "Umum", NomorSTR = "STR-12345" });
-                var dokterProfile = new ProfileService<DokterProfile>().GetProfile(username);
-                string dokterName = dokterProfile.Status && dokterProfile.Data != null ? dokterProfile.Data.Name : "Dr. Budi";
-
-                CurrentUser = new User { Username = username, Name = dokterName, Role = "Dokter" };
+                CurrentUser = new User { Username = username, Name = "Dr. Budi", Role = "Dokter" };
                 UserSession.Username = username;
-                UserSession.Name = dokterName;
+                UserSession.Name = "Dr. Budi";
                 UserSession.Role = "Dokter";
 
                 return new Response<User> { Status = true, Data = CurrentUser, Message = "Login berhasil sebagai Dokter!" };
