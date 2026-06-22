@@ -93,15 +93,6 @@ namespace TelkomMedikaForm
                     }
                     break;
 
-                case "Dokter":
-                    var dokterResp = new ProfileService<DokterProfile>().GetProfile(username);
-                    if (dokterResp.Status && dokterResp.Data != null)
-                    {
-                        dokterResp.Data.Name = newName;
-                        updated = new ProfileService<DokterProfile>().UpdateProfile(username, dokterResp.Data).Status;
-                    }
-                    break;
-
                 case "Pasien":
                     var pasienResp = new ProfileService<PasienProfile>().GetProfile(username);
                     if (pasienResp.Status && pasienResp.Data != null)
