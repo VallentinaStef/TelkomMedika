@@ -131,6 +131,11 @@ namespace Tubes_KPL_Kelompok_1.Services
             return new Response<Konsultasi> { Status = true, Data = konsultasi, Message = "Konsultasi dibatalkan." };
         }
 
+        public Response<List<Konsultasi>> GetDaftarKonsultasi()
+        {
+            return new Response<List<Konsultasi>> { Status = true, Data = _konsultasiList, Message = $"Ditemukan {_konsultasiList.Count} konsultasi." };
+        }
+
         public void TampilkanDaftarKonsultasi()
         {
             Console.WriteLine("\n=== DAFTAR KONSULTASI ===");
