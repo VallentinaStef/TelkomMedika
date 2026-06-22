@@ -52,7 +52,7 @@ namespace TelkomMedikaForm
             panelCard.Location = new Point(250, 100);
             panelCard.Margin = new Padding(4);
             panelCard.Name = "panelCard";
-            panelCard.Size = new Size(500, 578);
+            panelCard.Size = new Size(500, 610);
             panelCard.TabIndex = 0;
             // 
             // btnBack
@@ -191,7 +191,7 @@ namespace TelkomMedikaForm
             btnEdit.BackColor = Color.FromArgb(198, 40, 40);
             btnEdit.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnEdit.ForeColor = Color.White;
-            btnEdit.Location = new Point(205, 519);
+            btnEdit.Location = new Point(210, 560);
             btnEdit.Margin = new Padding(4);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(102, 39);
