@@ -1,13 +1,12 @@
 using Tubes_KPL_Kelompok_1.Modules;
 using Tubes_KPL_Kelompok_1.Config;
-using Tubes_KPL_Kelompok_1.Models;
 
 namespace TelkomMedikaForm
 {
     public partial class ObatForm : Form
     {
-        private ObatModule _module;
-        private BindingSource _bindingSource;
+        private readonly ObatModule _module;
+        private readonly BindingSource _bindingSource;
 
         public ObatForm()
         {
@@ -87,23 +86,15 @@ namespace TelkomMedikaForm
                 return;
             }
 
-            rtbOutput.Clear();
-
-            var originalOut = Console.Out;
-            using var writer = new StringWriter();
-            Console.SetOut(writer);
-
-            _module.CekReminder(jam);
-
-            Console.SetOut(originalOut);
-            rtbOutput.Text = writer.ToString();
+            var hasil = _module.CekReminder(jam);
+            rtbOutput.Text = string.Join("\n", hasil);
         }
 
         private void btnConfig_Click(object? sender, EventArgs e)
         {
             string current = AppConfig.ReminderMessage;
 
-            Form prompt = new Form
+            using Form prompt = new Form
             {
                 Width = 450,
                 Height = 180,
@@ -141,11 +132,6 @@ namespace TelkomMedikaForm
         private void btnKembali_Click(object? sender, EventArgs e)
         {
             Close();
-        }
-
-        private void txtCekJam_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

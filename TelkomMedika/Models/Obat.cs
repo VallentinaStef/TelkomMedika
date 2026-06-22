@@ -2,8 +2,8 @@
 {
     public class Obat
     {
-        public string Nama { get; set; }
-        public string Waktu { get; set; }
-        public string Dosis { get; set; }
+        public string Nama { get; set; } = string.Empty;
+        public string Waktu { get; set; } = string.Empty;
+        public string Dosis { get; set; } = string.Empty;
     }
 }

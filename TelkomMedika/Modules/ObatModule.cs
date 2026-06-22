@@ -7,13 +7,27 @@ namespace Tubes_KPL_Kelompok_1.Modules
 {
     public class ObatModule
     {
-        private List<Obat> tabelJadwal = new List<Obat>();
+        private const string FormatWaktuValid = "HH:mm";
+        private const string FormatWaktuError = "Format jam salah! Gunakan HH:mm (contoh 08:00)";
+        private const string SemuaJadwalLewat = "Semua jadwal obat untuk hari ini sudah lewat.";
+        private const string HeaderJadwal = "\n=== JADWAL KONSUMSI OBAT ===";
+        private const string BarisJadwal = "- Jam {0} | {1} ({2})";
+
+        private readonly List<Obat> tabelJadwal = new List<Obat>();
         public List<Obat> DaftarJadwal => tabelJadwal;
+
+        private static readonly (string Nama, string Waktu, string Dosis)[] DataAwal =
+        {
+            ("Paracetamol", "08:00", "500 mg"),
+            ("Vitamin C", "18:00", "250 mg")
+        };
 
         public ObatModule()
         {
-            TambahJadwal("Paracetamol", "08:00", "500 mg");
-            TambahJadwal("Vitamin C", "18:00", "250 mg");
+            foreach (var item in DataAwal)
+            {
+                TambahJadwal(item.Nama, item.Waktu, item.Dosis);
+            }
         }
 
         public void TambahJadwal(string nama, string waktu, string dosis)
@@ -29,51 +43,52 @@ namespace Tubes_KPL_Kelompok_1.Modules
 
         public void TampilkanJadwal()
         {
-            Console.WriteLine("\n=== JADWAL KONSUMSI OBAT ===");
+            Console.WriteLine(HeaderJadwal);
             foreach (var item in tabelJadwal)
             {
-                Console.WriteLine($"- Jam {item.Waktu} | {item.Nama} ({item.Dosis})");
+                Console.WriteLine(BarisJadwal, item.Waktu, item.Nama, item.Dosis);
             }
         }
 
-        // FR-011: Pengingat dengan Logika Selisih Waktu
-        public void CekReminder(string jamSekarangStr)
+        public List<string> CekReminder(string jamSekarangStr)
         {
-            // Parse jam sekarang menjadi tipe TimeSpan agar bisa dihitung
+            var hasil = new List<string>();
+
             if (!TimeSpan.TryParse(jamSekarangStr, out TimeSpan jamSekarang))
             {
-                Console.WriteLine("Format jam salah! Gunakan HH:mm (contoh 08:00)");
-                return;
+                hasil.Add(FormatWaktuError);
+                return hasil;
             }
 
             bool adaJadwalPas = false;
 
             foreach (var item in tabelJadwal)
             {
-                TimeSpan waktuObat = TimeSpan.Parse(item.Waktu);
+                if (!TimeSpan.TryParse(item.Waktu, out TimeSpan waktuObat))
+                    continue;
 
                 if (waktuObat == jamSekarang)
                 {
-                    // Jika jamnya pas
-                    Console.WriteLine($"\n{AppConfig.ReminderMessage} {item.Nama}!");
+                    hasil.Add($"{AppConfig.ReminderMessage} {item.Nama}!");
                     adaJadwalPas = true;
                 }
                 else if (waktuObat > jamSekarang)
                 {
                     TimeSpan selisih = waktuObat - jamSekarang;
-
-                    Console.WriteLine($"\nKamu harus minum obat {item.Nama}, {FormatSelisih(selisih)} lagi.");
+                    hasil.Add($"Kamu harus minum obat {item.Nama}, {FormatSelisih(selisih)} lagi.");
                 }
             }
 
-            if (!adaJadwalPas && tabelJadwal.TrueForAll(o => TimeSpan.Parse(o.Waktu) < jamSekarang))
+            if (!adaJadwalPas && tabelJadwal.TrueForAll(o =>
+                TimeSpan.TryParse(o.Waktu, out TimeSpan t) && t < jamSekarang))
             {
-                // Jika jam sekarang telah lewat semua waktu obat (tidak ada waktu tersisa)
-                Console.WriteLine("\nSemua jadwal obat untuk hari ini sudah lewat.");
+                hasil.Add(SemuaJadwalLewat);
             }
+
+            return hasil;
         }
 
-        private string FormatSelisih(TimeSpan selisih)
+        private static string FormatSelisih(TimeSpan selisih)
         {
             if (selisih.TotalHours < 1)
                 return $"{selisih.Minutes} menit";

@@ -2,7 +2,7 @@
 {
     public static class AppConfig
     {
-        public static string ReminderMessage = "[PENGINGAT] Waktunya minum obat:";
+        public static string ReminderMessage { get; set; } = "[PENGINGAT] Waktunya minum obat:";
 
         public static string ReservationApiBaseUrl = "";
         public static string ReservationEndpoint = "api/reservations";
